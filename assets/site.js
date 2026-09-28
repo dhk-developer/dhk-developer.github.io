@@ -217,8 +217,8 @@
       if (taps.length > 8) taps.shift();
       var mean = Math.round(taps.reduce(function (s, x) { return s + x; }, 0) / taps.length);
       detail.textContent = taps.length >= 4
-        ? "Average of your last " + taps.length + " taps: " + Math.abs(mean) + " ms " + (mean < 0 ? "early" : "late") + ". Memora's calibration measures this and corrects for it."
-        : "Keep going. After four taps you'll see your average offset.";
+        ? "Average of your last " + taps.length + " taps: " + Math.abs(mean) + " ms " + (mean < 0 ? "early" : "late") + ". In Memora, the calibration screen measures this and corrects for it."
+        : "After four taps, you'll see your average offset here.";
       renderTicks();
       if (!reduceMotion) {
         flash.style.transition = "none"; flash.style.opacity = "0.35";
@@ -239,7 +239,7 @@
     resetBtn.addEventListener("click", function () {
       taps = []; renderTicks();
       result.textContent = running ? "Get ready" : "Not started"; result.className = "demo-result";
-      detail.textContent = "Your last eight taps show on the scale below.";
+      detail.textContent = "Your last eight taps will appear on the scale below.";
     });
     pad.addEventListener("pointerdown", function (e) { e.preventDefault(); if (!running) start(); else judge(); });
     pad.addEventListener("keydown", function (e) {

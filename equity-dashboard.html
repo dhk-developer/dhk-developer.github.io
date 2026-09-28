@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Global equity indices","headline":"A Tableau dashboard on how Asia-Pacific markets split apart after 2019","description":"A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Tableau, Data preparation, Dashboard design"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Global equity indices","headline":"A Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019","description":"A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Tableau, Data preparation, Dashboard design"}]</script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -45,15 +45,15 @@
     <div class="wrap">
       <p class="crumb"><a href="work.html">← All work</a></p>
       <h1>Global equity indices</h1>
-      <p class="line">A Tableau dashboard on how Asia-Pacific markets split apart after 2019</p>
+      <p class="line">A Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019</p>
       <dl class="facts">
-        <div><dt>What</dt><dd>Tableau Public dashboard</dd></div><div><dt>Data</dt><dd>Major indices, 2019 to June 2024</dd></div><div><dt>Built with</dt><dd>Tableau</dd></div>
+        <div><dt>What it is</dt><dd>A dashboard published on Tableau Public, March 2026</dd></div><div><dt>Data</dt><dd>Major indices, 2019 to June 2024</dd></div><div><dt>Built with</dt><dd>Tableau</dd></div>
         <div><dt>When</dt><dd>2026</dd></div>
       </dl>
       <p class="case-links"><a class="ext" href="https://public.tableau.com/app/profile/daehurn/viz/GlobalEquityIndices/DivergingAsia-GlobalEquityTrends" rel="noopener">Open the live dashboard</a><a class="ext" href="https://github.com/dhk-developer/Tableau-Global-Equity-Indicies" rel="noopener">Repository</a></p>
       <figure class="media portrait">
   <div class="media-frame is-image"><img src="assets/media/equity-dashboard.webp" width="1100" height="1650" alt="The full Tableau dashboard: KPI cards, a line chart of index performance since 2019, a return against volatility scatter, a table of annual returns, a map of Asia-Pacific and written analysis." loading="eager" decoding="async"></div>
-  <figcaption>The whole dashboard as published on Tableau Public.</figcaption>
+  <figcaption>The whole dashboard as it appears on Tableau Public, where the live version also has filters and shows details when you hover over a chart.</figcaption>
 </figure>
     </div>
   </header>
@@ -61,26 +61,23 @@
     <nav class="toc" aria-label="On this page">
   <details open data-toc>
     <summary>On this page</summary>
-    <ol><li><a href="#what-its-for">What it&#39;s for</a></li><li><a href="#choices-i-made">Choices I made</a></li><li><a href="#what-it-showed-to-24-june-2024">What it showed (to 24 June 2024)</a></li><li><a href="#what-id-change">What I&#39;d change</a></li></ol>
+    <ol><li><a href="#what-its-for">What it&#39;s for</a></li><li><a href="#how-i-put-it-together">How I put it together</a></li><li><a href="#what-it-showed-up-to-24-june-2024">What it showed (up to 24 June 2024)</a></li><li><a href="#what-id-change">What I&#39;d change</a></li></ol>
   </details>
 </nav>
     <div class="prose">
       <h2 id="what-its-for">What it&#39;s for</h2>
-<p>I wanted one page that answers a simple question: how have the world&#39;s major stock markets done since 2019, how bumpy was the ride, and who is leading this year? The dashboard ended up being mostly about Asia-Pacific, because that&#39;s where the markets split apart most.</p>
-<h2 id="choices-i-made">Choices I made</h2>
-<ul>
-<li><strong>Three views on one screen.</strong> Performance since 2019 (indexed to 100), 2024 return against volatility, and a table of annual returns by market. Each one answers a single question.</li>
-<li><strong>Two scopes, labelled.</strong> The long-run chart and table use ten headline indices so they stay readable. The scatter uses a wider set. The dashboard says so, so nobody mixes them up.</li>
-<li><strong>Defined KPIs.</strong> Top and bottom performer this year, best growth since 2019 and deepest fall, each with an exact meaning.</li>
-<li><strong>Written analysis with its caveats.</strong> The main points are written out next to the charts, along with what the data can&#39;t tell you.</li>
-</ul>
-<h2 id="what-it-showed-to-24-june-2024">What it showed (to 24 June 2024)</h2>
-<p>Taiwan&#39;s index led the year. The NASDAQ Composite grew the most since 2019. Hang Seng had the deepest fall of the headline indices, and Latin American markets lagged in 2024.</p>
+<p>I wanted to build a single page that would answer a fairly simple question: how have the world&#39;s major stock markets done since 2019, how bumpy has that been, and which markets are ahead this year? Once I started looking at the data, the most interesting part was Asia-Pacific, where the markets had drifted furthest apart, so the dashboard ended up focusing there.</p>
+<h2 id="how-i-put-it-together">How I put it together</h2>
+<p>The dashboard has three main views on one screen. The first shows performance since 2019 with every index rebased to 100, the second plots this year&#39;s return against volatility, and the third is a table of annual returns by market. I tried to make each of them answer one question and leave the others to the other views.</p>
+<p>The long-run chart and the table only use ten headline indices, because with more than that they became hard to read, but the scatter uses a wider set to give more context for the current year. Since that difference could easily confuse someone, the dashboard says which set each view uses.</p>
+<p>Along the top are a few headline figures: the best and worst performer this year, the strongest growth since 2019 and the deepest fall. Each of them has a definition next to it, because a label like &quot;best market&quot; can mean several different things. I also wrote out the main points in a short piece of text beside the charts, together with the things the data can&#39;t tell you.</p>
+<h2 id="what-it-showed-up-to-24-june-2024">What it showed (up to 24 June 2024)</h2>
+<p>Taiwan&#39;s index was leading the year, while the NASDAQ Composite had grown the most since 2019. Among the headline indices, Hang Seng had the deepest fall, and the Latin American markets were lagging in 2024.</p>
 <h2 id="what-id-change">What I&#39;d change</h2>
-<p>The hard part was deciding what to leave out, not Tableau itself. Next time I&#39;d show it to two or three people before finishing, the same way I&#39;d test requirements with users.</p>
+<p>Most of the time went into deciding what to leave out. Next time I&#39;d show a draft to two or three people before finishing it, in the same way I&#39;d test requirements with users at work, to see whether they read it the way I intended.</p>
 
-      <p class="muted small" style="margin-top:var(--s7)">Built with: Tableau, Data preparation, Dashboard design.</p>
-      <p style="margin-top:var(--s5)">Next: <a href="structure-search.html">Polymer structure search</a>, research code from a summer at Cambridge.</p>
+      <p class="muted small" style="margin-top:var(--s7)">Tools and languages used: Tableau, Data preparation, Dashboard design.</p>
+      <p style="margin-top:var(--s5)">If you'd like to keep reading, the next project is <a href="structure-search.html">Polymer structure search</a>: python I wrote for a summer research placement at Cambridge, and the first sizeable code I ever wrote.</p>
     </div>
   </div>
 </article>
@@ -88,7 +85,7 @@
 <footer class="site-footer" id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <p>If you're hiring for a junior developer, or for a BA role that involves a fair amount of code, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to talk through any of the projects on this site in more detail.</p>
     <div class="email-row">
       <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
       <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>

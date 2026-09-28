@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Memora","headline":"A rhythm game for Android, and the Unity editor I built to chart it","description":"Memora: a Unity/C# rhythm game with moving judgement lines, audio-clock timing and a custom charting editor. Includes gameplay footage and a measured editor performance fix.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, Unity 6, URP, Input System, Editor tooling, JSON, Yarn Spinner"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Memora","headline":"A rhythm game I'm making for Android, along with the Unity editor I wrote so I could build its levels","description":"Memora: a Unity/C# rhythm game with moving judgement lines, audio-clock timing and a custom charting editor. Includes gameplay footage and a measured editor performance fix.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, Unity 6, URP, Input System, Editor tooling, JSON, Yarn Spinner"}]</script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -45,9 +45,9 @@
     <div class="wrap">
       <p class="crumb"><a href="work.html">← All work</a></p>
       <h1>Memora</h1>
-      <p class="line">A rhythm game for Android, and the Unity editor I built to chart it</p>
+      <p class="line">A rhythm game I&#39;m making for Android, along with the Unity editor I wrote so I could build its levels</p>
       <dl class="facts">
-        <div><dt>What</dt><dd>Rhythm game with a story mode, plus a custom charting editor</dd></div><div><dt>Me</dt><dd>Everything: design, code, charts</dd></div><div><dt>Built with</dt><dd>Unity 6, C#, URP, Input System</dd></div><div><dt>Size</dt><dd>319 C# scripts, 9 scenes, 2 editor tools</dd></div>
+        <div><dt>What it is</dt><dd>A rhythm game with a story mode, and the charting editor I use to make it</dd></div><div><dt>My role</dt><dd>I design it, write the code and make the charts myself</dd></div><div><dt>Built with</dt><dd>Unity 6, C#, URP, Input System</dd></div><div><dt>Size</dt><dd>319 C# scripts, 9 scenes, 2 editor tools</dd></div>
         <div><dt>When</dt><dd>2025 to now</dd></div>
       </dl>
       <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/memora-showcase" rel="noopener">Technical write-up on GitHub</a></p>
@@ -59,7 +59,7 @@
     <button class="play" type="button" hidden><span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1l11 6-11 6z"/></svg>Play clip (0:51)</span></button>
   </div>
   <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><span class="muted">No sound</span></div>
-  <figcaption>About 50 seconds of one of my charts, played on autoplay in the Unity editor. No sound, because the song isn&#39;t mine.</figcaption>
+  <figcaption>Roughly fifty seconds of one of my charts running on autoplay in the Unity editor. I&#39;ve left the sound off because the song belongs to someone else.</figcaption>
 </figure>
     </div>
   </header>
@@ -67,29 +67,23 @@
     <nav class="toc" aria-label="On this page">
   <details open data-toc>
     <summary>On this page</summary>
-    <ol><li><a href="#what-it-is">What it is</a></li><li><a href="#the-first-problem-what-does-the-player-actually-hit">The first problem: what does the player actually hit?</a></li><li><a href="#timing">Timing</a></li><li><a href="#notes-that-aim-at-moving-things">Notes that aim at moving things</a></li><li><a href="#the-charting-editor">The charting editor</a></li><li><a href="#finding-a-slowdown-in-the-editor">Finding a slowdown in the editor</a></li><li><a href="#reusable-patterns">Reusable patterns</a></li><li><a href="#not-breaking-old-charts-and-saves">Not breaking old charts and saves</a></li><li><a href="#what-isnt-finished">What isn&#39;t finished</a></li><li><a href="#what-id-do-differently">What I&#39;d do differently</a></li></ol>
+    <ol><li><a href="#background">Background</a></li><li><a href="#keeping-judgement-apart-from-the-visuals">Keeping judgement apart from the visuals</a></li><li><a href="#timing">Timing</a></li><li><a href="#notes-that-aim-at-moving-things">Notes that aim at moving things</a></li><li><a href="#the-charting-editor">The charting editor</a></li><li><a href="#tracking-down-a-slowdown-in-the-editor">Tracking down a slowdown in the editor</a></li><li><a href="#reusable-patterns">Reusable patterns</a></li><li><a href="#keeping-old-charts-and-saves-working">Keeping old charts and saves working</a></li><li><a href="#what-isnt-finished">What isn&#39;t finished</a></li><li><a href="#what-id-do-differently">What I&#39;d do differently</a></li></ol>
   </details>
 </nav>
     <div class="prose">
-      <h2 id="what-it-is">What it is</h2>
-<p>Memora is a rhythm game I&#39;ve been making on my own since late 2025. It&#39;s in the style of Phigros and Arcaea, where the lines you tap on move around the screen, with a visual-novel story attached. It runs on Android and is built in Unity 6 with C#.</p>
-<p>I wanted to push the moving-line idea further. In Memora a note can sit on a line, float in open space, fly at another note, or aim at a point that is still moving when you hit it. Most of the screen is choreographed to the music. The clip at the top is one of my charts on autoplay.</p>
-<p>The code is private, because I&#39;d like to release the game one day. I&#39;ve put architecture notes, diagrams and a small separate code sample in a <a href="https://github.com/dhk-developer/memora-showcase" class="ext" rel="noopener">public repository</a>.</p>
-<h2 id="the-first-problem-what-does-the-player-actually-hit">The first problem: what does the player actually hit?</h2>
-<p>Once lines move, it gets hard to say where and when a note should be judged. My early versions let the note&#39;s animation and its hit position share the same data. That meant every visual idea was also a gameplay change. An animation that overshot moved the hit point. Camera shake moved the target.</p>
-<p>So I split every note into two parts that never write to each other:</p>
-<ul>
-<li><strong>Judgement data:</strong> the beat, what it&#39;s aimed at (a line, a point in space, another note) and the action (tap, hold, slide or flick). Input is only ever checked against this.</li>
-<li><strong>Presentation:</strong> how it enters, moves, scales, fades and leaves, written as keyframes in beats so it can follow the music.</li>
-</ul>
-<p>The rule I stuck to is that nothing decorative can move a scoring target. Camera, layers and effects are applied after the hit position has been worked out. A nice side effect is &quot;visual-only&quot; notes, which look exactly like real notes but are never judged or scored, so I can use them for fake-outs.</p>
-<p>It costs more data per note and two code paths to keep in step. In return, when a play says Miss, there is one place to look to find out why.</p>
+      <h2 id="background">Background</h2>
+<p>Memora is a rhythm game in the style of Phigros and Arcaea, which I started in late 2025. In those games the lines you tap on move, spin and disappear as the song plays, and I wanted to take that idea further, so in Memora a note can also float free of any line, fly towards another note, or aim at a point on the screen that is still moving when you hit it. There&#39;s a visual-novel story mode as well. The game targets Android and I&#39;m building it in Unity 6 with C#, on my own, in the evenings and at weekends.</p>
+<p>I&#39;m keeping the source code private for now because I&#39;d like to release the game at some point. If you want to look at more of the engineering, I&#39;ve written up the architecture with some diagrams, and put a small separate code sample, in a <a href="https://github.com/dhk-developer/memora-showcase" class="ext" rel="noopener">public repository on GitHub</a>.</p>
+<h2 id="keeping-judgement-apart-from-the-visuals">Keeping judgement apart from the visuals</h2>
+<p>The first real problem came up as soon as the lines started moving, because it was no longer obvious where and when a note should be judged. In my early prototype the note&#39;s animation and its hit position were stored together, which meant that any visual flourish I added also changed the gameplay without my meaning it to. If an entrance animation overshot, the hit point overshot with it, and a bit of camera shake was enough to move a target away from where the player expected it.</p>
+<p>I got round this by giving every playable note two separate sets of data. One set holds the things that decide the score: the beat it falls on, whatever it&#39;s aimed at, and whether it&#39;s a tap, a hold, a slide or a flick. The other set describes how the note looks on its way in and out, written as keyframes measured in beats so that the movement can follow the music. Input is only ever compared against the first set, and the camera, layers and effects are applied after the hit position has already been worked out, so none of them can drag a target somewhere else. Having the two apart also let me add notes that are purely decorative, which look exactly like the real thing but are never judged, and they turned out to be useful for fake-outs in the choreography.</p>
+<p>It does mean more data per note, and I have two code paths that have to stay consistent with each other. I think that&#39;s a fair price, because when a play comes back as a Miss I only need to look in one place to find out why.</p>
 <h2 id="timing">Timing</h2>
-<p>Frame time isn&#39;t precise enough for a rhythm game, and it drifts away from the audio. Memora takes its time from the audio system&#39;s DSP clock instead. Song time is the audio time since the song was scheduled to start, minus the chart&#39;s offset and the player&#39;s measured device latency. Every line position, target and animation is worked out fresh from that beat each frame, so a dropped frame can&#39;t knock anything off course.</p>
-<p>Scoring adds up to exactly 1,000,000 for a perfect run: 900,000 for accuracy, where a Great is worth 70% of a Perfect, and 100,000 for combo.</p>
+<p>Counting frames isn&#39;t accurate enough for a rhythm game, and over the length of a song it slowly drifts away from the audio, so Memora takes its time from Unity&#39;s audio (DSP) clock. The song is scheduled to start at a known point on that clock, and the current song position is the audio time since then, minus the chart&#39;s own offset and whatever latency has been measured for the player&#39;s device. Every line position, target and animation is then calculated from that beat on each frame, instead of being moved a little at a time, which means a dropped frame can&#39;t push anything off course.</p>
+<p>Scores are out of 1,000,000. Accuracy is worth 900,000 of that, with a Great counting for 70% of a Perfect, and the other 100,000 comes from combo.</p>
 <section class="demo" aria-labelledby="demo-title">
-  <h3 id="demo-title">Try the timing windows</h3>
-  <p>A ring closes in on the circle once per beat at 100 BPM. Tap the circle, or press Space, as the ring meets it. Each tap is judged against the same windows Memora uses by default: ±100 ms for Perfect, ±250 ms for Great, anything else is a Miss.</p>
+  <h3 id="demo-title">Try it yourself</h3>
+  <p>This is a stripped-down version of how Memora judges a tap. Once you press Start, a ring will close in on the circle at 100 beats per minute, and you tap the circle (or press Space) at the moment the ring meets it. Each tap is graded with the same windows the game uses by default, so anything within 100 ms of the beat counts as a Perfect, anything within 250 ms is a Great, and the rest are misses.</p>
   <p class="demo-fallback">This demo needs JavaScript.</p>
   <div class="demo-live">
     <div class="demo-stage">
@@ -103,7 +97,7 @@
       </button>
       <div class="demo-readout">
         <p class="demo-result" id="demo-result" role="status" aria-live="polite" data-demo-result>Not started</p>
-        <p data-demo-detail class="muted">Your last eight taps show on the scale below.</p>
+        <p data-demo-detail class="muted">Your last eight taps will appear on the scale below.</p>
         <div class="demo-scale" aria-hidden="true" data-demo-scale>
           <span class="band great"></span><span class="band perfect"></span><span class="zero"></span>
           <span class="labels"><span>250 ms early</span><span>on the beat</span><span>250 ms late</span></span>
@@ -115,55 +109,41 @@
       <button type="button" class="secondary" data-demo-reset>Reset</button>
       <label><input type="checkbox" data-demo-sound checked> Click sound</label>
     </div>
-    <p class="small muted" style="margin-top:var(--s3)">This runs on the browser's audio clock, which is the same idea as the game: the beat comes from audio time, not from frame time. Browsers and Bluetooth headphones add their own delay, which is exactly what the calibration screen in Memora measures.</p>
+    <p class="small muted" style="margin-top:var(--s3)">Like the game, the demo keeps time using the audio clock instead of counting frames. If your taps keep landing late even when they feel right, that's probably your browser or headphones adding a little delay of their own, and measuring that delay is what the calibration screen in Memora is for.</p>
   </div>
-</section><p>Phones and headphones all add their own delay, so there&#39;s a calibration screen. It plays a four-beat loop and asks for four taps. I take the mean of the middle two offsets so that one stray tap can&#39;t drag the result, and if the taps disagree too much it asks you to try again instead of saving a bad value. I wrote those rules down as plain sentences before writing any code, which is a habit from my BA work, and the code was straightforward after that.</p>
+</section><p>Phones and headphones all add some delay of their own, which is why the game has a calibration screen. It plays a looping four-beat bar and asks you to tap along four times, and I take the average of the middle two offsets, so one badly mistimed tap can&#39;t drag the result too far. If the taps are spread out too much, it asks you to try again instead of saving a number it can&#39;t trust. Before writing any of this I wrote the rules out as plain sentences, which is something I picked up from writing acceptance criteria at work, and having them in front of me made the code much easier to get right.</p>
 <h2 id="notes-that-aim-at-moving-things">Notes that aim at moving things</h2>
-<p>A floating note can be aimed at another note. The tricky part is choosing when to look at the target. If note B flies at note A, B has to arrive where A will be at B&#39;s hit time, not where A was at its own hit time.</p>
-<p>To make that reliable, anything a note can aim at has to work out its position from only the chart, the beat and the screen size. It can&#39;t read the previous frame or anything stored while playing. That&#39;s what lets the editor jump backwards through a song and get the same result as playing forwards, and I have checks that seek backwards and compare.</p>
-<p>Notes can approach in two ways. By default they aim at where the target will be when you hit it. The other mode follows the target as it moves, with a correction when a line jumps instantly so the note doesn&#39;t jump with it.</p>
+<p>Letting one note aim at another raised a question I hadn&#39;t thought about at first, which is at what moment the game should look at the target&#39;s position. Say note B is flying towards note A. B needs to arrive where A will be at the moment B is hit, which isn&#39;t necessarily where A was when A itself was hit, so the target has to be sampled at B&#39;s hit time.</p>
+<p>To make that dependable, anything a note can aim at has to be able to work out its position from the chart, the beat and the size of the screen and nothing else, so it isn&#39;t allowed to rely on the previous frame or on anything remembered during play. That constraint is what allows the editor to jump backwards to any point in a song and draw exactly what it would have drawn if you&#39;d played up to that point, and I have automated checks that seek backwards and compare the two.</p>
+<p>There are two ways a note can approach its target. By default it heads for where the target will be when you hit it, which is the easiest to read. The other option follows the target as it moves, and has a correction for lines that jump instantly from one place to another, so that the note doesn&#39;t jump along with the line.</p>
 <h2 id="the-charting-editor">The charting editor</h2>
-<p>I write charts in a Unity editor window I built. It has a timeline, a live preview of the playfield, waveform and slowed-down playback, layers, a library of reusable patterns and undo.</p>
+<p>Charts are stored as JSON, and writing something this choreographed by hand was never going to be realistic, so I built an editor window inside Unity for making them. It has a timeline, a live preview of the playfield, a waveform view and slowed-down playback, layers, a library of reusable patterns, and undo.</p>
 <figure class="media wide">
   <div class="media-frame is-image"><img src="assets/media/memora-editor.webp" width="1600" height="838" alt="The Memora charting editor in Unity: a workflow panel on the left, a preview of the playfield at the top, and a timeline with rows for judgement lines, camera frames and visual effects above a lane of coloured note markers." loading="lazy" decoding="async"></div>
-  <figcaption>The charting editor with a chart loaded. Top: the live preview of the playfield. Below: the timeline, with rows for lines, camera frames and effects, and the notes along the bottom. I&#39;ve blurred two row labels that name the song.</figcaption>
-</figure><p>Early on, the preview had its own simplified version of the gameplay maths, and the two drifted apart. The fix was to move that maths into shared code that both the game and the editor call, and to add checks comparing the two. I&#39;d do that from day one next time.</p>
-<p>Being able to jump to any beat instantly needed a few specific pieces:</p>
-<ul>
-<li>an interval tree to find everything active at a given beat;</li>
-<li>repeated events stored once and only expanded for the part of the song being looked at;</li>
-<li>a cached running total to convert variable scroll speed into distance;</li>
-<li>seek requests where the newest one wins, and the preview only shows a result once it&#39;s complete.</li>
-</ul>
-<h2 id="finding-a-slowdown-in-the-editor">Finding a slowdown in the editor</h2>
-<p>On bigger charts, playback in the editor got sluggish. I profiled it before changing anything. One inspector panel was serialising the whole chart four times on every layout pass and four more times on every repaint, just to prepare undo snapshots when nothing had changed.</p>
-<p>I changed that panel to record undo only when something is actually edited, cached results that were being recalculated several times per repaint, and stopped drawing timeline rows that were off screen. These are averages from the same sections of three charts before and after:</p>
+  <figcaption>The charting editor with one of my charts open. The preview at the top shows the playfield exactly as the player would see it at the current beat, and underneath is the timeline, with rows for the moving lines, camera frames and effects above the notes themselves. I&#39;ve blurred two labels that give away the song.</figcaption>
+</figure><p>For a while the editor preview had its own simplified copy of the gameplay maths, and the two gradually drifted apart until the preview no longer matched what you&#39;d see in the game. I fixed that by moving the maths into shared code that both the game and the editor call, and I added checks that compare their output. If I were starting again I&#39;d write that shared code first.</p>
+<p>Being able to jump straight to any beat took a few specific pieces of work. The editor keeps an interval tree so it can find everything that&#39;s active at a given beat without scanning the whole chart. Repeated events are stored once and only expanded for the stretch of the song being looked at, and a cached running total converts changes in scroll speed into distance. When you scrub quickly, each new seek request replaces any older one that hasn&#39;t finished, and the preview waits until a result is complete before drawing it.</p>
+<h2 id="tracking-down-a-slowdown-in-the-editor">Tracking down a slowdown in the editor</h2>
+<p>Once charts got bigger, playback in the editor started to stutter, and I profiled it before changing anything. The culprit was one of the inspector panels, which was serialising the entire chart four times on every layout pass and another four times on every repaint, just to get ready for an undo that nobody had asked for.</p>
+<p>I changed the panel so that it only records undo when something is edited, cached a few results that were being recalculated several times per repaint, and stopped drawing timeline rows that were off the screen. The table shows the averages I measured over the same sections of three charts, before and after the change.</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table><thead><tr><th scope="col">Chart (start beat)</th><th style="text-align:right" scope="col">Preview updates/s before</th><th style="text-align:right" scope="col">after</th><th style="text-align:right" scope="col">Average repaint before</th><th style="text-align:right" scope="col">after</th></tr></thead><tbody><tr><td>Chart A (56)</td><td style="text-align:right">14.8</td><td style="text-align:right">59.6</td><td style="text-align:right">47.3 ms</td><td style="text-align:right">11.5 ms</td></tr>
 <tr><td>Chart B (60)</td><td style="text-align:right">9.6</td><td style="text-align:right">56.1</td><td style="text-align:right">74.6 ms</td><td style="text-align:right">15.6 ms</td></tr>
 <tr><td>Chart C (142)</td><td style="text-align:right">4.6</td><td style="text-align:right">55.0</td><td style="text-align:right">119.8 ms</td><td style="text-align:right">14.9 ms</td></tr>
 <tr><td>Chart C (296)</td><td style="text-align:right">5.0</td><td style="text-align:right">66.5</td><td style="text-align:right">121.4 ms</td><td style="text-align:right">12.9 ms</td></tr></tbody></table></div>
-<p>Because I was changing how the editor draws, I needed proof that it still showed exactly the same thing. I ran 18,125 automated comparisons between cached and fresh results, compared screenshots at the same beats (they were pixel-identical), and hashed every chart file to confirm none had changed.</p>
+<p>Since I was changing the way the editor draws, I wanted to be sure it still showed exactly the same thing afterwards. I ran 18,125 automated comparisons between cached and freshly calculated results, compared screenshots taken at the same beats (they came out pixel-identical), and checked the hash of every chart file to make sure none of them had been modified along the way.</p>
 <h2 id="reusable-patterns">Reusable patterns</h2>
-<p>Charts repeat ideas, like a stream of notes or two lines trading a melody. I save these as presets with parameters. Applying one copies it into the chart as ordinary notes with fresh IDs, as a single undo step, and records which version of the preset it came from. If I later change the preset, finished charts stay as they are. I chose copies over live links because I never want a song to change without me deciding it should.</p>
-<h2 id="not-breaking-old-charts-and-saves">Not breaking old charts and saves</h2>
-<p>Every new feature is optional data, and old fields are kept readable even after something replaces them. Before saving, the editor checks for data the game can&#39;t handle yet, so nothing is silently dropped.</p>
-<p>Story progress is saved with a checksum. It&#39;s written to a temporary file first and then swapped in, with a backup kept, so a crash halfway through a save can&#39;t corrupt it. A save from a newer version of the game is never overwritten by an older one.</p>
+<p>Charts tend to repeat ideas, such as a stream of notes along a curve or two lines passing a melody back and forth, so I save those as presets with a few adjustable parameters. When you apply a preset it&#39;s copied into the chart as ordinary notes with new IDs, all as a single undo step, and the chart records which version of the preset it came from. I went with copies over live links because I didn&#39;t want an edit to a preset to change songs I&#39;d already finished without me noticing.</p>
+<h2 id="keeping-old-charts-and-saves-working">Keeping old charts and saves working</h2>
+<p>New features are added as optional data, and when something replaces an older feature, the old fields are still read even though nothing writes to them any more. Before the editor saves a chart, it checks for anything the game can&#39;t handle yet, so that nothing gets dropped without warning.</p>
+<p>Story progress is saved with a checksum, written to a temporary file first and then swapped into place with a backup kept alongside, so a crash halfway through saving can&#39;t corrupt it. The game will also refuse to overwrite a save that came from a newer version of itself.</p>
 <h2 id="what-isnt-finished">What isn&#39;t finished</h2>
-<ul>
-<li>Songs with tempo changes aren&#39;t supported yet. Doing it properly means one clock that playback, the grid, the waveform and judgement all agree on, and I&#39;d rather leave it out than fake it.</li>
-<li>Layers on playable notes are reserved in the data format but not connected.</li>
-<li>I haven&#39;t done proper performance testing on a range of phones yet. The editor numbers above are measured; measuring on phones is the next job.</li>
-</ul>
+<p>Songs that change tempo partway through aren&#39;t supported yet. Doing that properly means having one clock that playback, the grid, the waveform and judgement all agree on, and I&#39;d prefer to leave the feature out for now than ship a version that only approximately works. Layers on playable notes are reserved in the data format but aren&#39;t hooked up. I also haven&#39;t done proper performance testing across a range of phones; the editor figures above are measured, and measuring on real devices is the next thing on my list.</p>
 <h2 id="what-id-do-differently">What I&#39;d do differently</h2>
-<ul>
-<li>Split the project into separate assemblies early. Two classes grew very large, and splitting them into partial files made them easier to read but didn&#39;t reduce how tangled they are.</li>
-<li>Write the shared gameplay maths first, before the editor preview, so they never drift.</li>
-<li>Test on real phones sooner.</li>
-</ul>
-<p>If you&#39;d like to talk about any of this, the parts I enjoy explaining most are the audio clock, the moving targets and how I checked the editor fix didn&#39;t change anything.</p>
+<p>I&#39;d split the project into separate assemblies early on. Two of the classes grew very large, and although breaking them into partial files made them easier to read, it didn&#39;t untangle them. I&#39;d also write the shared gameplay maths before building the editor preview, so that the two could never drift, and I&#39;d start testing on real phones much sooner than I did.</p>
+<p>If you&#39;d like to talk about any of this, the parts I most enjoy explaining are the audio clock, the notes that aim at moving targets, and how I checked that the editor fix didn&#39;t change anything.</p>
 
-      <p class="muted small" style="margin-top:var(--s7)">Built with: C#, Unity 6, URP, Input System, Editor tooling, JSON, Yarn Spinner.</p>
-      <p style="margin-top:var(--s5)">Next: <a href="desktop-idle.html">DesktopIdle</a>, a Windows tray app that clears the desktop when you walk away.</p>
+      <p class="muted small" style="margin-top:var(--s7)">Tools and languages used: C#, Unity 6, URP, Input System, Editor tooling, JSON, Yarn Spinner.</p>
+      <p style="margin-top:var(--s5)">If you'd like to keep reading, the next project is <a href="desktop-idle.html">DesktopIdle</a>: a small tray app that tidies your Windows desktop away when you leave the computer, and puts everything back when you return.</p>
     </div>
   </div>
 </article>
@@ -171,7 +151,7 @@
 <footer class="site-footer" id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <p>If you're hiring for a junior developer, or for a BA role that involves a fair amount of code, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to talk through any of the projects on this site in more detail.</p>
     <div class="email-row">
       <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
       <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>

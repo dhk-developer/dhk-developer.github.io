@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"League of Legends data study","headline":"What wins games in 2020 compared with 2024, and where that comparison falls apart","description":"An API-to-SQL data study comparing which in-game factors go with winning League of Legends games in 2020 and 2024.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Python, Requests, Pandas, Seaborn, SQLAlchemy, MySQL, Riot Games API"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"League of Legends data study","headline":"Comparing what tends to win League of Legends games in 2020 and 2024, and why the comparison doesn't fully hold up","description":"An API-to-SQL data study comparing which in-game factors go with winning League of Legends games in 2020 and 2024.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Python, Requests, Pandas, Seaborn, SQLAlchemy, MySQL, Riot Games API"}]</script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -45,15 +45,15 @@
     <div class="wrap">
       <p class="crumb"><a href="work.html">← All work</a></p>
       <h1>League of Legends data study</h1>
-      <p class="line">What wins games in 2020 compared with 2024, and where that comparison falls apart</p>
+      <p class="line">Comparing what tends to win League of Legends games in 2020 and 2024, and why the comparison doesn&#39;t fully hold up</p>
       <dl class="facts">
-        <div><dt>What</dt><dd>Assessed project during technical training</dd></div><div><dt>Data</dt><dd>About 9,900 games (2020), 1,847 unique games (2024)</dd></div><div><dt>Built with</dt><dd>Python, Pandas, SQLAlchemy, MySQL</dd></div>
+        <div><dt>What it is</dt><dd>An assessed project from my technical training, April 2024</dd></div><div><dt>Data</dt><dd>About 9,900 games (2020), 1,847 unique games (2024)</dd></div><div><dt>Built with</dt><dd>Python, Pandas, SQLAlchemy, MySQL</dd></div>
         <div><dt>When</dt><dd>2024</dd></div>
       </dl>
       <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/Riot_ETL_Pipeline" rel="noopener">Notebook and data</a></p>
       <figure class="media">
   <div class="media-frame is-image"><img src="assets/media/riot-averages.webp" width="1600" height="479" alt="Four bar charts from the notebook comparing average kills, dragons, towers destroyed and win rate for 2020 and 2024. The 2024 bars are several times taller for kills, dragons and towers." loading="eager" decoding="async"></div>
-  <figcaption>Straight out of my notebook. The 2024 bars look dramatic because the 2020 data stops at ten minutes and the 2024 data covers whole games.</figcaption>
+  <figcaption>Four of the charts from my notebook. The 2024 bars look dramatic, but most of the difference comes from the 2020 data stopping at the ten-minute mark while the 2024 data covers whole games.</figcaption>
 </figure>
     </div>
   </header>
@@ -61,44 +61,31 @@
     <nav class="toc" aria-label="On this page">
   <details open data-toc>
     <summary>On this page</summary>
-    <ol><li><a href="#the-question">The question</a></li><li><a href="#getting-the-2024-games">Getting the 2024 games</a></li><li><a href="#making-the-two-years-comparable">Making the two years comparable</a></li><li><a href="#what-it-suggested">What it suggested</a></li><li><a href="#where-it-falls-apart">Where it falls apart</a></li><li><a href="#about-the-repository">About the repository</a></li><li><a href="#what-id-do-differently">What I&#39;d do differently</a></li></ol>
+    <ol><li><a href="#the-question">The question</a></li><li><a href="#getting-the-2024-games">Getting the 2024 games</a></li><li><a href="#making-the-two-years-comparable">Making the two years comparable</a></li><li><a href="#what-it-suggested">What it suggested</a></li><li><a href="#where-the-comparison-runs-into-trouble">Where the comparison runs into trouble</a></li><li><a href="#about-the-repository">About the repository</a></li><li><a href="#what-id-do-differently">What I&#39;d do differently</a></li></ol>
   </details>
 </nav>
     <div class="prose">
       <h2 id="the-question">The question</h2>
-<p>I did this as an assessed project during my technical training in 2024. League of Legends patches keep changing what objectives are worth, so I wanted to know which in-game stats go with winning, and whether that had changed between 2020 and 2024.</p>
-<p>I used a public dataset of about 9,900 high-rank games from 2020, and pulled 2024 games from the Riot Games API myself.</p>
+<p>This was an assessed project during my technical training in 2024. League of Legends patches keep changing how much the various objectives are worth, and I wanted to find out which in-game stats went with winning, and whether that had shifted between 2020 and 2024.</p>
+<p>For 2020 I used a public dataset of about 9,900 high-rank games. For 2024 there wasn&#39;t anything equivalent available, so I pulled the games from the Riot Games API myself.</p>
 <h2 id="getting-the-2024-games">Getting the 2024 games</h2>
-<p>There&#39;s no API call for &quot;recent high-rank matches&quot;, so I went through the players:</p>
-<ol>
-<li>get the top 300 or so players on the ladder;</li>
-<li>look up each player&#39;s account, then their recent match IDs;</li>
-<li>download the details of each match, which is a large JSON document per game.</li>
-</ol>
-<p>The free API key allows 100 requests every two minutes, and this needed well over 600, so I throttled the requests and saved each stage to JSON files. Running it again only fetches what&#39;s new.</p>
-<p>One thing I didn&#39;t expect: asking for 3,000 games gave me only 1,847 different ones. At the top of the ladder the same few hundred players keep ending up in each other&#39;s games.</p>
+<p>There&#39;s no API call that returns recent high-rank matches, so I had to go through the players instead. I started by fetching the top 300 or so players on the ladder, looked up each player&#39;s account and their recent match IDs, and then downloaded the details of each match, which comes back as a large JSON document per game.</p>
+<p>The free API key only allows 100 requests every two minutes, and this needed well over 600, so I throttled the requests and saved the results of each stage to JSON files as I went. That also meant I could stop and restart the script without having to fetch everything again.</p>
+<p>Something I hadn&#39;t expected was that asking for 3,000 games only gave me 1,847 different ones. At the top of the ladder the same few hundred players keep ending up in each other&#39;s games, so their match histories overlap a lot.</p>
 <h2 id="making-the-two-years-comparable">Making the two years comparable</h2>
-<p>The 2020 data has one row per game with team totals. The API gives ten players per game. I rebuilt the same team-level columns for the blue side (kills, deaths, assists, wards, dragons, heralds, towers, gold and experience difference) and added objectives that didn&#39;t exist in 2020. On the 2020 side I dropped columns that just mirror each other, like red kills and blue deaths, after checking a correlation matrix. Then I loaded both into MySQL with SQLAlchemy and lined them up there.</p>
+<p>The 2020 data has one row per game with totals for each team, whereas the API gives you all ten players separately. I rebuilt the same team-level columns for the blue side (kills, deaths, assists, wards, dragons, heralds, towers, gold and experience difference) and added the objectives that didn&#39;t exist yet in 2020. On the 2020 side I dropped columns that mirrored each other, like red kills and blue deaths, after checking a correlation matrix. I then loaded both tables into MySQL with SQLAlchemy and lined them up there.</p>
 <h2 id="what-it-suggested">What it suggested</h2>
-<ul>
-<li>Dragons and towers were much more strongly linked to winning in 2024, which fits patches that made dragons give permanent bonuses and added tower bounties.</li>
-<li>First blood mattered less, which fits the comeback mechanics added since.</li>
-<li>Vision (wards placed and destroyed) was weakly linked to winning in both years.</li>
-</ul>
-<h2 id="where-it-falls-apart">Where it falls apart</h2>
-<p>The chart at the top is from my notebook. The 2024 bars look enormous, but that&#39;s mostly because the 2020 dataset only covers the first ten minutes of each game, while the API returns whole games. Correlations within each year still tell you something. Comparing the raw numbers between years doesn&#39;t, and I didn&#39;t present it that way.</p>
-<p>That&#39;s the same check I make at work before anyone relies on a number: are these two things measured the same way? Here they weren&#39;t, and the honest conclusion says so.</p>
+<p>In 2024, dragons and towers were much more strongly linked to winning than they had been in 2020, which fits with patches that made dragons give permanent bonuses and added bounties for towers. First blood mattered less, which also makes sense given the comeback mechanics that have been added since. Vision, meaning wards placed and destroyed, was only weakly linked to winning in both years.</p>
+<h2 id="where-the-comparison-runs-into-trouble">Where the comparison runs into trouble</h2>
+<p>The charts at the top of the page come straight from my notebook, and the 2024 bars look enormous next to the 2020 ones. Most of that difference is because the 2020 dataset only covers the first ten minutes of each game, while the API returns whole games. The correlations within each year still tell you something useful, but comparing the raw numbers between the two years doesn&#39;t, and I was careful not to present it that way.</p>
+<p>It&#39;s the same check I try to make at work before anyone relies on a figure, which is to ask whether the two things being compared were measured in the same way. In this case they weren&#39;t, and the write-up says so.</p>
 <h2 id="about-the-repository">About the repository</h2>
-<p>The repository has the notebook, the cached data, both loaded tables and the modules for account and match-ID requests. Some helper code the notebook describes (the ladder lookup and the throttling and caching) isn&#39;t in the committed version, so treat the notebook as the record of how it was done.</p>
+<p>The repository has the notebook, the cached data, both loaded tables and the modules that request accounts and match IDs. Some of the helper code the notebook refers to, for looking up the ladder and handling the throttling and caching, didn&#39;t make it into the committed version, so the notebook is the best record of how the work was done.</p>
 <h2 id="what-id-do-differently">What I&#39;d do differently</h2>
-<ul>
-<li>Use the match timeline endpoint to cut the 2024 games at ten minutes, so the years really are comparable.</li>
-<li>Remove duplicate match IDs before requesting details, to save rate-limited calls.</li>
-<li>Fit a simple logistic regression and test it on held-out games, instead of stopping at correlations.</li>
-</ul>
+<p>I&#39;d use the match timeline endpoint to cut the 2024 games off at ten minutes, which would make the two years comparable. I&#39;d also remove duplicate match IDs before requesting the details, to save rate-limited calls, and I&#39;d go beyond correlations by fitting a simple logistic regression and testing it on games it hadn&#39;t seen.</p>
 
-      <p class="muted small" style="margin-top:var(--s7)">Built with: Python, Requests, Pandas, Seaborn, SQLAlchemy, MySQL, Riot Games API.</p>
-      <p style="margin-top:var(--s5)">Next: <a href="equity-dashboard.html">Global equity indices</a>, a Tableau dashboard on how Asia-Pacific markets split apart after 2019.</p>
+      <p class="muted small" style="margin-top:var(--s7)">Tools and languages used: Python, Requests, Pandas, Seaborn, SQLAlchemy, MySQL, Riot Games API.</p>
+      <p style="margin-top:var(--s5)">If you'd like to keep reading, the next project is <a href="equity-dashboard.html">Global equity indices</a>: a Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019.</p>
     </div>
   </div>
 </article>
@@ -106,7 +93,7 @@
 <footer class="site-footer" id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <p>If you're hiring for a junior developer, or for a BA role that involves a fair amount of code, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to talk through any of the projects on this site in more detail.</p>
     <div class="email-row">
       <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
       <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
