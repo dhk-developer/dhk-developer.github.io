@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Touch FX · Dae Kang</title>
+<meta name="description" content="Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/touch-fx.html">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="Touch FX · Dae Kang">
+<meta property="og:description" content="Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/touch-fx.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Touch FX","headline":"A small click effect for the whole Windows desktop","description":"Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, WPF, Win32 hooks, Custom drawing"}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="crumb"><a href="work.html">← All work</a></p>
+      <h1>Touch FX</h1>
+      <p class="line">A small click effect for the whole Windows desktop</p>
+      <dl class="facts">
+        <div><dt>What</dt><dd>Windows overlay, three releases</dd></div><div><dt>Me</dt><dd>Sole developer</dd></div><div><dt>Built with</dt><dd>C#, WPF, a low-level mouse hook</dd></div>
+        <div><dt>When</dt><dd>2026</dd></div>
+      </dl>
+      <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/Blue-Archive-Touch-fx" rel="noopener">Source and releases</a></p>
+      <figure class="media">
+  <div class="media-frame" data-video>
+    <video controls muted playsinline loop preload="none" poster="assets/media/touch-fx.webp" width="960" height="540" aria-label="Close-up of a pale desktop wallpaper. Each mouse click produces a small blue burst of rings, triangles and squares that fades out in under a second.">
+      <source src="assets/media/touch-fx.mp4" type="video/mp4">
+    </video>
+    <button class="play" type="button" hidden><span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1l11 6-11 6z"/></svg>Play clip (0:06)</span></button>
+  </div>
+  <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><span class="muted">No sound</span></div>
+  <figcaption>A close-up of the desktop while I click around. Each burst fades in under a second, and the app draws nothing in between.</figcaption>
+</figure>
+    </div>
+  </header>
+  <div class="wrap case-body has-toc">
+    <nav class="toc" aria-label="On this page">
+  <details open data-toc>
+    <summary>On this page</summary>
+    <ol><li><a href="#why-i-made-it">Why I made it</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#releases">Releases</a></li><li><a href="#what-id-change">What I&#39;d change</a></li></ol>
+  </details>
+</nav>
+    <div class="prose">
+      <h2 id="why-i-made-it">Why I made it</h2>
+<p>Some games draw a little burst wherever you tap, and I wanted that on my Windows desktop. It&#39;s a fan project and has nothing to do with any game company.</p>
+<p>It sounds simple, but it had three rules: it has to cover every monitor, it must never swallow a click meant for another app, and it should cost nothing when you aren&#39;t clicking.</p>
+<h2 id="how-it-works">How it works</h2>
+<ul>
+<li><strong>A see-through window over everything.</strong> A borderless, transparent WPF window covers all monitors and stays on top. Its window style tells Windows to pass every click through to whatever is underneath, and keeps it out of Alt-Tab.</li>
+<li><strong>Listening for clicks everywhere.</strong> A low-level mouse hook notes each left click and hands it to the UI thread. The hook returns straight away, so it never slows down your mouse.</li>
+<li><strong>Drawing only when needed.</strong> Each click spawns a pulse, a spinning arc and a few small shapes. The window only hooks into WPF&#39;s per-frame rendering while an effect is on screen, and unhooks when the last one fades.</li>
+<li><strong>Limits.</strong> There are hard caps on how many shapes can exist at once, and rapid clicking makes new bursts smaller instead of piling them up.</li>
+<li><strong>Light and dark.</strong> It reads the Windows theme and uses stronger colours on bright backgrounds.</li>
+<li><strong>A way out.</strong> Ctrl + Alt + Q quits it from anywhere, and there&#39;s a tray menu.</li>
+</ul>
+<h2 id="releases">Releases</h2>
+<p>Three small releases (v0.1.0 to v0.1.2), each a change I made after using it for a while: a bigger effect, then automatic light and dark colours.</p>
+<h2 id="what-id-change">What I&#39;d change</h2>
+<p>I&#39;d try a composition-based renderer instead of a full-screen WPF window, so the cost when idle is actually zero, and test properly on monitors with different scaling.</p>
+
+      <p class="muted small" style="margin-top:var(--s7)">Built with: C#, WPF, Win32 hooks, Custom drawing.</p>
+      <p style="margin-top:var(--s5)">Next: <a href="riot-analysis.html">League of Legends data study</a>, what wins games in 2020 compared with 2024, and where that comparison falls apart.</p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
