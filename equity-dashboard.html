@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Global equity indices","headline":"A Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019","description":"A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Tableau, Data preparation, Dashboard design"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Game development","Software development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Global equity indices","headline":"A Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019","description":"A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Tableau, Data preparation, Dashboard design"}]</script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -68,16 +68,15 @@
       <h2 id="what-its-for">What it&#39;s for</h2>
 <p>I wanted to build a single page that would answer a fairly simple question: how have the world&#39;s major stock markets done since 2019, how bumpy has that been, and which markets are ahead this year? Once I started looking at the data, the most interesting part was Asia-Pacific, where the markets had drifted furthest apart, so the dashboard ended up focusing there.</p>
 <h2 id="how-i-put-it-together">How I put it together</h2>
-<p>The dashboard has three main views on one screen. The first shows performance since 2019 with every index rebased to 100, the second plots this year&#39;s return against volatility, and the third is a table of annual returns by market. I tried to make each of them answer one question and leave the others to the other views.</p>
+<p>The dashboard has three main views on one screen. The first shows performance since 2019 with every index rebased to 100, the second plots this year&#39;s return against volatility, and the third is a table of annual returns by market. Each view answers one question and leaves the others to the rest of the dashboard.</p>
 <p>The long-run chart and the table only use ten headline indices, because with more than that they became hard to read, but the scatter uses a wider set to give more context for the current year. Since that difference could easily confuse someone, the dashboard says which set each view uses.</p>
 <p>Along the top are a few headline figures: the best and worst performer this year, the strongest growth since 2019 and the deepest fall. Each of them has a definition next to it, because a label like &quot;best market&quot; can mean several different things. I also wrote out the main points in a short piece of text beside the charts, together with the things the data can&#39;t tell you.</p>
 <h2 id="what-it-showed-up-to-24-june-2024">What it showed (up to 24 June 2024)</h2>
 <p>Taiwan&#39;s index was leading the year, while the NASDAQ Composite had grown the most since 2019. Among the headline indices, Hang Seng had the deepest fall, and the Latin American markets were lagging in 2024.</p>
 <h2 id="what-id-change">What I&#39;d change</h2>
-<p>Most of the time went into deciding what to leave out. Next time I&#39;d show a draft to two or three people before finishing it, in the same way I&#39;d test requirements with users at work, to see whether they read it the way I intended.</p>
+<p>Most of the time went into deciding what to leave out. Next time I&#39;d show a draft to two or three people before publishing it, to check that they read the charts the way I intended before the layout was fixed.</p>
 
-      <p class="muted small" style="margin-top:var(--s7)">Tools and languages used: Tableau, Data preparation, Dashboard design.</p>
-      <p style="margin-top:var(--s5)">If you'd like to keep reading, the next project is <a href="structure-search.html">Polymer structure search</a>: python I wrote for a summer research placement at Cambridge, and the first sizeable code I ever wrote.</p>
+      <p style="margin-top:var(--s7)">If you'd like to keep reading, the next project is <a href="structure-search.html">Polymer structure search</a>: research code from a summer placement at Cambridge that generates random polymer structures and relaxes them with a force field.</p>
     </div>
   </div>
 </article>
@@ -85,7 +84,7 @@
 <footer class="site-footer" id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>If you're hiring for a junior developer, or for a BA role that involves a fair amount of code, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to talk through any of the projects on this site in more detail.</p>
+    <p>If you're hiring for a junior developer, particularly for a team working in C#, Unity or .NET, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to go through any of the projects on this site in more detail.</p>
     <div class="email-row">
       <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
       <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>

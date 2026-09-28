@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"DesktopIdle","headline":"A small tray app that tidies your Windows desktop away when you leave the computer, and puts everything back when you return","description":"DesktopIdle: a .NET 8 Windows tray app that clears and restores the desktop after inactivity, using Win32 idle detection and media-session checks.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, .NET 8, WinForms, Win32 P/Invoke, WinRT media sessions, JSON settings"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Game development","Software development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"DesktopIdle","headline":"A small tray app that tidies your Windows desktop away when you leave the computer, and puts everything back when you return","description":"DesktopIdle: a .NET 8 Windows tray app that clears and restores the desktop after inactivity, using Win32 idle detection and media-session checks.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, .NET 8, WinForms, Win32 P/Invoke, WinRT media sessions, JSON settings"}]</script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -59,7 +59,7 @@
     <button class="play" type="button" hidden><span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1l11 6-11 6z"/></svg>Play clip (0:13)</span></button>
   </div>
   <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><span class="muted">No sound</span></div>
-  <figcaption>Recorded on my own PC with the idle time turned down to 15 seconds, so you can see the window and taskbar disappear and then come back as soon as the mouse moves. The folder names are blurred.</figcaption>
+  <figcaption>Recorded on my own PC with the idle time turned down to 15 seconds, so you can see the window and taskbar disappear and then come back as soon as the mouse moves.</figcaption>
 </figure>
     </div>
   </header>
@@ -89,10 +89,9 @@
 <p>I didn&#39;t want to hide the cursor by changing the system cursor, because if the app crashed at the wrong moment the change would outlive it and leave someone without a pointer. Instead the app puts an almost invisible full-screen window on top whose cursor is blank, and if the app dies, that window goes with it.</p>
 <p>While the desktop is clear the app turns on taskbar auto-hide, but it saves your own setting first and puts it back afterwards. Windows are restored in their original order with a tiny delay between each one, which stops them all trying to redraw at the same moment. The settings live in a plain JSON file, and each value is checked against a sensible minimum when it&#39;s loaded, so a typo can&#39;t set the idle time to zero.</p>
 <h2 id="what-id-add-next">What I&#39;d add next</h2>
-<p>The idle logic is a small state machine, and at the moment the only way to test it is on a real desktop. I&#39;d like to pull it out into something I can run automated tests against, especially the grace-period handling.</p>
+<p>The idle logic is a small state machine, and at the moment the only way to test it is on a real desktop. The next step is to pull it out into a class that automated tests can drive directly, starting with the grace-period handling, since that is the part most likely to break if the timings change.</p>
 
-      <p class="muted small" style="margin-top:var(--s7)">Tools and languages used: C#, .NET 8, WinForms, Win32 P/Invoke, WinRT media sessions, JSON settings.</p>
-      <p style="margin-top:var(--s5)">If you'd like to keep reading, the next project is <a href="touch-fx.html">Touch FX</a>: an overlay that draws a little burst of shapes wherever you click on your Windows desktop.</p>
+      <p style="margin-top:var(--s7)">If you'd like to keep reading, the next project is <a href="touch-fx.html">Touch FX</a>: an overlay that draws a little burst of shapes wherever you click on your Windows desktop.</p>
     </div>
   </div>
 </article>
@@ -100,7 +99,7 @@
 <footer class="site-footer" id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>If you're hiring for a junior developer, or for a BA role that involves a fair amount of code, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to talk through any of the projects on this site in more detail.</p>
+    <p>If you're hiring for a junior developer, particularly for a team working in C#, Unity or .NET, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to go through any of the projects on this site in more detail.</p>
     <div class="email-row">
       <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
       <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
