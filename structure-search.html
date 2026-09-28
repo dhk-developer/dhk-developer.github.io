@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Polymer structure search","headline":"Research code from a summer at Cambridge","description":"Python research code that generates and relaxes random polyethylene structures in an AIRSS-style search.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Python, NumPy, ASE, LAMMPS, Linux / HPC"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Polymer structure search","headline":"Python I wrote for a summer research placement at Cambridge, and the first sizeable code I ever wrote","description":"Python research code that generates and relaxes random polyethylene structures in an AIRSS-style search.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Python, NumPy, ASE, LAMMPS, Linux / HPC"}]</script>
 <script src="assets/site.js" defer></script>
 </head>
 <body>
@@ -45,9 +45,9 @@
     <div class="wrap">
       <p class="crumb"><a href="work.html">← All work</a></p>
       <h1>Polymer structure search</h1>
-      <p class="line">Research code from a summer at Cambridge</p>
+      <p class="line">Python I wrote for a summer research placement at Cambridge, and the first sizeable code I ever wrote</p>
       <dl class="facts">
-        <div><dt>What</dt><dd>Summer research placement</dd></div><div><dt>Where</dt><dd>University of Cambridge, through In2Research</dd></div><div><dt>Built with</dt><dd>Python, NumPy, ASE, LAMMPS</dd></div>
+        <div><dt>What it is</dt><dd>Code from a summer research placement, 2022</dd></div><div><dt>Where</dt><dd>University of Cambridge, through In2Research</dd></div><div><dt>Built with</dt><dd>Python, NumPy, ASE, LAMMPS</dd></div>
         <div><dt>When</dt><dd>2022</dd></div>
       </dl>
       <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/opt-polyethylene" rel="noopener">Source on GitHub</a></p>
@@ -63,24 +63,17 @@
 </nav>
     <div class="prose">
       <h2 id="the-project">The project</h2>
-<p>In summer 2022 I was a Computational Research Assistant at the University of Cambridge, through In2Research. The project applied random structure searching (AIRSS) to polyethylene. The idea is to generate lots of random but sensible starting structures, relax each one with a physical model, and see which low-energy arrangements keep turning up.</p>
+<p>In the summer of 2022 I spent three months as a Computational Research Assistant at the University of Cambridge, through the In2Research programme. The project applied a technique called random structure searching (AIRSS) to polyethylene. The idea is to generate a large number of random but physically sensible starting structures, relax each one with a model of the forces involved, and then see which low-energy arrangements keep turning up.</p>
 <h2 id="what-i-wrote">What I wrote</h2>
-<p>A Python package that:</p>
-<ol>
-<li>builds polymer chains with standard bond lengths and angles;</li>
-<li>makes a random periodic box and places chains in it without overlaps;</li>
-<li>rotates each chain randomly to widen the search;</li>
-<li>relaxes each structure with the AIREBO force field in LAMMPS, driven from Python through ASE, including the box shape under a set pressure;</li>
-<li>writes the results in formats that AIRSS tools and viewers like VESTA can read.</li>
-</ol>
-<p>The optimised structures matched what&#39;s seen experimentally, and I presented the work as a poster at the In2Research summer conference.</p>
+<p>I wrote a Python package that builds polymer chains using standard bond lengths and angles, creates a random periodic box, and places the chains inside it without letting them overlap. Each chain is then rotated at random to widen the search. The package relaxes every structure with the AIREBO force field in LAMMPS, driven from Python through ASE, and allows the shape of the box to change under a set pressure. Finally it writes the results out in formats that the AIRSS tools and viewers like VESTA can read.</p>
+<p>The optimised structures agreed with what&#39;s been observed experimentally, and I presented the work as a poster at the In2Research summer conference.</p>
 <h2 id="why-its-here">Why it&#39;s here</h2>
-<p>It&#39;s the first real code I wrote, on Linux and a university computing cluster, inside someone else&#39;s research method. That meant understanding what they needed before writing anything.</p>
+<p>It was the first sizeable piece of code I&#39;d written, and I wrote it on Linux and a university computing cluster, working within someone else&#39;s research method. Before I could write anything useful I had to understand what the researchers needed, which isn&#39;t so different from what I do now as a business analyst.</p>
 <h2 id="what-id-change-now">What I&#39;d change now</h2>
-<p>Add tests for the geometry code, pin the dependency versions, and separate generating structures from relaxing them so each part can be checked on its own.</p>
+<p>I&#39;d add tests for the geometry code, pin the versions of the libraries it depends on, and keep generating the structures separate from relaxing them, so that each part could be checked on its own.</p>
 
-      <p class="muted small" style="margin-top:var(--s7)">Built with: Python, NumPy, ASE, LAMMPS, Linux / HPC.</p>
-      <p style="margin-top:var(--s5)">Next: <a href="memora.html">Memora</a>, a rhythm game for Android, and the Unity editor I built to chart it.</p>
+      <p class="muted small" style="margin-top:var(--s7)">Tools and languages used: Python, NumPy, ASE, LAMMPS, Linux / HPC.</p>
+      <p style="margin-top:var(--s5)">If you'd like to keep reading, the next project is <a href="memora.html">Memora</a>: a rhythm game I&#39;m making for Android, along with the Unity editor I wrote so I could build its levels.</p>
     </div>
   </div>
 </article>
@@ -88,7 +81,7 @@
 <footer class="site-footer" id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <p>If you're hiring for a junior developer, or for a BA role that involves a fair amount of code, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to talk through any of the projects on this site in more detail.</p>
     <div class="email-row">
       <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
       <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
