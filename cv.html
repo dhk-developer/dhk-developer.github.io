@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CV · Dae Kang</title>
+<meta name="description" content="CV of Daehurn (Dae) Kang: Business Analyst moving into software development, with C#, Unity, .NET, Python and SQL projects.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/cv.html">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="CV · Dae Kang">
+<meta property="og:description" content="CV of Daehurn (Dae) Kang: Business Analyst moving into software development, with C#, Unity, .NET, Python and SQL projects.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html" aria-current="page">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<section class="intro no-print" aria-labelledby="cv-title">
+  <div class="wrap">
+    <h1 id="cv-title">CV</h1>
+    <p class="lede">The same information as the rest of the site, on two pages.</p>
+    <p class="intro-links"><a class="btn" href="assets/cv/Daehurn-Kang-CV.pdf" download="Daehurn-Kang-CV.pdf">Download the PDF</a></p>
+  </div>
+</section>
+<section class="section" style="padding-top:0"><div class="wrap">
+  <div class="cv">
+    <header>
+      <h2 style="margin-top:0;border:0;font-size:1.75rem">Daehurn Kang</h2>
+      <ul class="cv-contact">
+        <li><a href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/daehurn-kang-003650209">linkedin.com/in/daehurn-kang-003650209</a></li>
+        <li><a href="https://github.com/dhk-developer">github.com/dhk-developer</a></li>
+        <li><a href="https://dhk-developer.github.io">dhk-developer.github.io</a></li>
+        <li>United Kingdom</li>
+      </ul>
+    </header>
+
+    <h2>Profile</h2>
+    <p>Business Analyst at Infotechtion, looking to move into a junior software or game developer role. In my own time I build software in C#: Memora, a Unity rhythm game for Android with a custom charting editor and audio-clock timing, and two released Windows utilities in .NET 8. I also work with Python and SQL for data projects. My analysis work (requirements, user research, acceptance criteria) means I'm used to pinning down what needs building before building it. MSci Chemistry, Imperial College London.</p>
+
+    <h2>Projects</h2>
+    <div class="cv-entry">
+      <header><h3>Memora: rhythm game and charting editor (Unity 6, C#)</h3><span class="when">2025 to now</span></header>
+      <ul>
+        <li>Built the gameplay so that each note's judgement data (beat, target, action) is kept separate from its animation, so visual effects can never change scoring.</li>
+        <li>Took game time from the audio DSP clock, with a four-tap latency calibration that ignores stray taps.</li>
+        <li>Built a Unity editor window for writing charts: timeline, live preview, reusable pattern presets and undo, using shared code with the game so the preview matches gameplay.</li>
+        <li>Profiled a slowdown in the editor and fixed it: average repaint on the largest chart went from about 120 ms to 15 ms, checked with 18,125 automated comparisons.</li>
+      </ul>
+    </div>
+    <div class="cv-entry">
+      <header><h3>DesktopIdle: Windows tray utility (.NET 8, Win32)</h3><span class="when">2026</span></header>
+      <ul><li>Clears and restores the desktop after inactivity. Uses Win32 idle detection, window and taskbar control, and media-session checks, and fixes the app's own input ending idle mode.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <header><h3>Touch FX: click-effect overlay (WPF)</h3><span class="when">2026</span></header>
+      <ul><li>Click-through overlay across all monitors using a low-level mouse hook, drawing only while an effect is on screen.</li></ul>
+    </div>
+    <div class="cv-entry">
+      <header><h3>League of Legends data study (Python, SQL, Riot Games API)</h3><span class="when">2024</span></header>
+      <ul><li>Pulled rate-limited API data, reshaped it to match a 2020 dataset, loaded both into MySQL and compared them, and documented why the two years aren't directly comparable.</li></ul>
+    </div>
+
+    <h2>Experience</h2>
+    <div class="cv-entry">
+      <header><h3>Business Analyst (Change), Infotechtion</h3><span class="when">Oct 2024 – present</span></header>
+      <ul><li>Write business and technical requirements, user stories and acceptance criteria in Azure DevOps, usually starting from goals that aren&#39;t pinned down yet.</li><li>Plan and run research sessions with records-management and information-governance users, then pull out their needs and the process problems worth fixing first.</li><li>Interview business owners and engineers during discovery, and keep both sides talking about the same thing.</li><li>Map how processes work now and how they should work, including how data comes in and gets checked.</li><li>Help people adopt the change: training, communications and follow-up.</li></ul>
+    </div><div class="cv-entry">
+      <header><h3>Technical Consultant, Xander Talent</h3><span class="when">Dec 2023 – 2024</span></header>
+      <ul><li>Worked out why a client barely used their Salesforce CRM, and what would need to change.</li><li>Redesigned an ETL process to cut out duplicate form fields and unneeded extraction, and presented the results.</li><li>Turned data into short reports that non-technical people could act on.</li><li>Worked in Scrum, with regular reviews with the client.</li></ul>
+    </div><div class="cv-entry">
+      <header><h3>US/UK Tax Trainee, Jaffe &amp; Co</h3><span class="when">Jul – Nov 2023</span></header>
+      <ul><li>Prepared and checked US and UK tax returns for individuals and companies.</li><li>Checked client documents were complete and valid before anything was filed.</li></ul>
+    </div><div class="cv-entry">
+      <header><h3>Computational Research Assistant, University of Cambridge · In2Research</h3><span class="when">Jul – Sep 2022</span></header>
+      <ul><li>Wrote Python that generates random polyethylene structures and relaxes them with a force field, following the AIRSS method.</li><li>Presented it as a poster at the In2Research summer conference.</li></ul>
+    </div>
+
+    <h2>Education</h2>
+    <div class="cv-entry">
+      <header><h3>MSci Chemistry (2:1), Imperial College London</h3><span class="when">2019 – 2023</span></header>
+      <p>My dissertation was computational: how reproducible it is to build Gaussian16 inputs for large biological assemblies, and a workflow to make that less error-prone.</p>
+    </div><div class="cv-entry">
+      <header><h3>Technical specialism, Xander Academy</h3><span class="when">2023 – 2024</span></header>
+      <p>Python (Flask, SQLAlchemy, Pandas), SQL (MySQL), data modelling, ETL, Power BI.</p>
+    </div>
+    <div class="cv-entry">
+      <header><h3>A-levels, LaSWAP Sixth Form</h3><span class="when">2017 to 2019</span></header>
+      <p>Chemistry (A*), Computer Science (A), Mathematics (A), Physics (A).</p>
+    </div>
+
+    <h2>Skills</h2>
+    <p><strong>Development:</strong> C# (Unity 6, .NET 8, WinForms, WPF), Win32 interop, Git and GitHub, profiling.<br>
+    <strong>Data:</strong> Python (Pandas, NumPy, Requests), SQL (MySQL, SQLAlchemy), REST APIs, Tableau, Power BI.<br>
+    <strong>Analysis:</strong> requirements, user stories and acceptance criteria, user research, process mapping, Azure DevOps, training and change.<br>
+    <strong>Languages:</strong> English, Korean (fluent).</p>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

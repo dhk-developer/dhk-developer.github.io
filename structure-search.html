@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polymer structure search · Dae Kang</title>
+<meta name="description" content="Python research code that generates and relaxes random polyethylene structures in an AIRSS-style search.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/structure-search.html">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="Polymer structure search · Dae Kang">
+<meta property="og:description" content="Python research code that generates and relaxes random polyethylene structures in an AIRSS-style search.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/structure-search.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","jobTitle":"Business Analyst","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Business analysis","Requirements"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Polymer structure search","headline":"Research code from a summer at Cambridge","description":"Python research code that generates and relaxes random polyethylene structures in an AIRSS-style search.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Python, NumPy, ASE, LAMMPS, Linux / HPC"}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="crumb"><a href="work.html">← All work</a></p>
+      <h1>Polymer structure search</h1>
+      <p class="line">Research code from a summer at Cambridge</p>
+      <dl class="facts">
+        <div><dt>What</dt><dd>Summer research placement</dd></div><div><dt>Where</dt><dd>University of Cambridge, through In2Research</dd></div><div><dt>Built with</dt><dd>Python, NumPy, ASE, LAMMPS</dd></div>
+        <div><dt>When</dt><dd>2022</dd></div>
+      </dl>
+      <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/opt-polyethylene" rel="noopener">Source on GitHub</a></p>
+      
+    </div>
+  </header>
+  <div class="wrap case-body has-toc">
+    <nav class="toc" aria-label="On this page">
+  <details open data-toc>
+    <summary>On this page</summary>
+    <ol><li><a href="#the-project">The project</a></li><li><a href="#what-i-wrote">What I wrote</a></li><li><a href="#why-its-here">Why it&#39;s here</a></li><li><a href="#what-id-change-now">What I&#39;d change now</a></li></ol>
+  </details>
+</nav>
+    <div class="prose">
+      <h2 id="the-project">The project</h2>
+<p>In summer 2022 I was a Computational Research Assistant at the University of Cambridge, through In2Research. The project applied random structure searching (AIRSS) to polyethylene. The idea is to generate lots of random but sensible starting structures, relax each one with a physical model, and see which low-energy arrangements keep turning up.</p>
+<h2 id="what-i-wrote">What I wrote</h2>
+<p>A Python package that:</p>
+<ol>
+<li>builds polymer chains with standard bond lengths and angles;</li>
+<li>makes a random periodic box and places chains in it without overlaps;</li>
+<li>rotates each chain randomly to widen the search;</li>
+<li>relaxes each structure with the AIREBO force field in LAMMPS, driven from Python through ASE, including the box shape under a set pressure;</li>
+<li>writes the results in formats that AIRSS tools and viewers like VESTA can read.</li>
+</ol>
+<p>The optimised structures matched what&#39;s seen experimentally, and I presented the work as a poster at the In2Research summer conference.</p>
+<h2 id="why-its-here">Why it&#39;s here</h2>
+<p>It&#39;s the first real code I wrote, on Linux and a university computing cluster, inside someone else&#39;s research method. That meant understanding what they needed before writing anything.</p>
+<h2 id="what-id-change-now">What I&#39;d change now</h2>
+<p>Add tests for the geometry code, pin the dependency versions, and separate generating structures from relaxing them so each part can be checked on its own.</p>
+
+      <p class="muted small" style="margin-top:var(--s7)">Built with: Python, NumPy, ASE, LAMMPS, Linux / HPC.</p>
+      <p style="margin-top:var(--s5)">Next: <a href="memora.html">Memora</a>, a rhythm game for Android, and the Unity editor I built to chart it.</p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>I'm looking for a first developer role, or a technical BA role where I'm writing code as part of the job. Email is the quickest way to reach me.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
