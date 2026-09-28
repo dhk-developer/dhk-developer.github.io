@@ -1,0 +1,16 @@
+{
+  "name": "dhk-developer-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio of Dae Kang: static site, no framework, no runtime dependencies.",
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "build": "node src/build.ts",
+    "dev": "node src/build.ts && node tools/serve.ts",
+    "check": "tsc --noEmit",
+    "cv": "node tools/cv-pdf.ts",
+    "og": "node tools/og-images.ts"
+  },
+  "license": "UNLICENSED"
+}
