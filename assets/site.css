@@ -204,7 +204,7 @@ strong { font-weight: 600; }
 .crumb { font-size: 0.9375rem; margin-bottom: var(--s5); }
 .case-head h1 { margin-bottom: var(--s3); }
 .case-head .line { font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem); color: var(--ink-2); max-width: var(--measure); }
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: var(--s4) var(--s5); margin-top: var(--s6); padding-top: var(--s5); border-top: 1px solid var(--rule); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: var(--s4) var(--s5); margin-top: var(--s6); padding-top: var(--s5); border-top: 1px solid var(--rule); }
 .facts dt { font-size: 0.8125rem; color: var(--ink-2); }
 .facts dd { margin: 0; font-size: 1rem; }
 .case-links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s5); font-size: 1rem; }
@@ -309,15 +309,42 @@ tbody tr:last-child td { border-bottom: 0; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2); margin-top: var(--s7); font-size: 0.875rem; color: var(--ink-2); }
 
 /* ---------- CV ---------- */
-.cv { max-width: 48rem; }
-.cv h2 { font-size: 1.375rem; margin-top: var(--s6); padding-bottom: var(--s1); border-bottom: 1px solid var(--rule); margin-bottom: var(--s3); }
+/* The CV is set entirely in the text face: the display serif is kept for the site itself. */
+.cv { max-width: 48rem; font-family: var(--sans); }
+.cv h2, .cv h3 { font-family: var(--sans); }
+.cv-head { display: grid; grid-template-columns: 1fr auto; gap: var(--s3) var(--s6); align-items: end; padding-bottom: var(--s4); border-bottom: 2px solid var(--ink); }
+.cv-name { font-size: 2rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; margin: 0; }
+.cv-tagline { color: var(--ink-2); margin: var(--s1) 0 0; }
+.cv-contact { list-style: none; padding: 0; margin: 0; text-align: right; font-size: 0.875rem; line-height: 1.55; }
+.cv-contact a { color: var(--ink); text-decoration: none; }
+.cv-contact a:hover { color: var(--accent); text-decoration: underline; }
+.cv h2 { font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-top: var(--s6); padding-bottom: var(--s1); border-bottom: 1px solid var(--rule); margin-bottom: var(--s3); }
 .cv-entry + .cv-entry { margin-top: var(--s4); }
-.cv-entry header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s1) var(--s4); }
-.cv-entry h3 { font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; }
-.cv-entry .when { color: var(--ink-2); font-size: 0.9375rem; }
-.cv ul { padding-left: 1.2em; margin-top: var(--s1); }
+.cv-entry header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--s1) var(--s4); }
+.cv-entry h3 { font-weight: 600; font-size: 1rem; }
+.cv-entry .when { color: var(--ink-2); font-size: 0.875rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cv ul { padding-left: 1.1em; margin-top: var(--s1); }
 .cv li + li { margin-top: var(--s1); }
-.cv-contact { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); font-size: 0.9375rem; margin-top: var(--s2); }
+.cv-skills { margin: 0; display: grid; gap: var(--s1); }
+.cv-skills div { display: grid; grid-template-columns: 7rem 1fr; gap: var(--s3); }
+.cv-skills dt { font-weight: 600; }
+.cv-skills dd { margin: 0; }
+@media (max-width: 40rem) {
+  .cv-head { grid-template-columns: 1fr; }
+  .cv-contact { text-align: left; }
+  .cv-skills div { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ---------- About: artwork ---------- */
+.art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: var(--s4); margin: var(--s5) 0; }
+.art-item { margin: 0; }
+.art-item img { display: block; width: 100%; height: auto; border-radius: var(--radius); background: var(--paper-2); }
+.art-item figcaption { font-size: 0.875rem; color: var(--ink-2); margin-top: var(--s1); }
+
+/* ---------- Code blocks in write-ups ---------- */
+.prose pre { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s3) var(--s4); overflow-x: auto; font-size: 0.8125rem; line-height: 1.5; margin: var(--s4) 0; }
+.prose pre code { background: none; padding: 0; font-size: inherit; }
+.prose .note { margin: var(--s5) 0; }
 
 @media print {
   :root { --paper: #fff; --paper-2: #fff; --ink: #000; --ink-2: #333; --rule: #bbb; --accent: #000; }
@@ -327,9 +354,17 @@ tbody tr:last-child td { border-bottom: 0; }
   .section { padding: 0 !important; }
   .wrap { padding: 0; max-width: none; }
   .cv { max-width: none; }
-  .cv h2 { font-size: 12pt; margin-top: 10pt; margin-bottom: 4pt; }
+  .cv-head { grid-template-columns: 1fr auto; padding-bottom: 8pt; border-bottom-color: #000; }
+  .cv-name { font-size: 20pt; }
+  .cv-tagline { font-size: 10pt; }
+  .cv-contact { text-align: right; font-size: 8.5pt; line-height: 1.45; }
+  .cv h2 { font-size: 8.5pt; color: #000; margin-top: 11pt; margin-bottom: 4pt; }
+  .cv-entry h3 { font-size: 10pt; }
+  .cv-entry .when { font-size: 9pt; }
   .cv-entry { break-inside: avoid; }
   .cv-entry + .cv-entry { margin-top: 6pt; }
+  .cv li + li { margin-top: 1.5pt; }
+  .cv-skills div { grid-template-columns: 22mm 1fr; gap: 6pt; }
   a { color: #000; text-decoration: none; }
 }
 
