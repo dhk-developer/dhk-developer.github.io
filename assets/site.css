@@ -130,6 +130,21 @@ strong { font-weight: 600; }
 .media-frame.is-image { background: var(--paper-2); border: 1px solid var(--rule); }
 .media.portrait { max-width: 36rem; }
 .media figcaption { font-size: 0.9375rem; color: var(--ink-2); margin-top: var(--s2); max-width: var(--measure); }
+.media.diagram { max-width: 30rem; }
+.diagram-frame { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s4); }
+.diagram svg { width: 100%; overflow: visible; }
+.diagram text { font: 400 12.5px var(--sans); fill: var(--ink); }
+.diagram .dg-head { font-weight: 600; }
+.diagram .dg-muted { fill: var(--ink-2); }
+.diagram .dg-accent-text { fill: var(--accent); font-weight: 600; }
+.diagram .dg-ink { stroke: var(--ink); fill: none; }
+.diagram .dg-rule { stroke: var(--rule-strong); fill: none; }
+.diagram .dg-accent { stroke: var(--accent); fill: none; }
+.diagram .dg-accent-fill { fill: var(--accent); }
+.diagram .dg-ink-fill { fill: var(--ink); }
+.diagram .dg-wash { fill: var(--accent-wash); }
+.diagram .dg-paper { fill: var(--paper); }
+@media (max-width: 30rem) { .diagram-frame { padding: var(--s2); } }
 .play {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: var(--s2);
   width: 100%; border: 0; margin: 0; padding: 0; cursor: pointer; background: transparent; color: #fff; font: 600 1rem/1 var(--sans);
@@ -207,6 +222,19 @@ strong { font-weight: 600; }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: var(--s4) var(--s5); margin-top: var(--s6); padding-top: var(--s5); border-top: 1px solid var(--rule); }
 .facts dt { font-size: 0.8125rem; color: var(--ink-2); }
 .facts dd { margin: 0; font-size: 1rem; }
+.glance { margin-top: var(--s6); max-width: 52rem; }
+.glance h2 { font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; margin-bottom: var(--s2); }
+.glance dl { border-top: 1px solid var(--rule); }
+.glance dl > div { display: grid; gap: var(--s1) var(--s5); padding-block: var(--s3); border-bottom: 1px solid var(--rule); }
+.glance dt { font-size: 0.875rem; color: var(--ink-2); }
+.glance dd { margin: 0; font-size: 1rem; font-variant-numeric: tabular-nums; }
+@media (min-width: 48rem) { .glance dl > div { grid-template-columns: 9rem minmax(0, 1fr); align-items: baseline; } }
+.case-lead { display: grid; gap: var(--s6); margin-top: var(--s6); }
+.case-lead .glance, .case-lead .media { margin: 0; }
+@media (min-width: 64rem) {
+  .case-lead { grid-template-columns: minmax(0, 24rem) minmax(0, 1fr); align-items: start; gap: var(--s7); }
+  .case-lead .glance dl > div { grid-template-columns: minmax(0, 1fr); }
+}
 .case-links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s5); font-size: 1rem; }
 .case-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6); padding-bottom: var(--s8); }
 .case-body > * { min-width: 0; }
@@ -240,6 +268,8 @@ strong { font-weight: 600; }
 table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
 th, td { text-align: left; padding: var(--s2) var(--s3); border-bottom: 1px solid var(--rule); vertical-align: top; }
 thead th { background: var(--paper-2); font-weight: 600; }
+tbody th { font-weight: 400; }
+caption { caption-side: top; text-align: left; padding: var(--s2) var(--s3); color: var(--ink-2); border-bottom: 1px solid var(--rule); }
 tbody tr:last-child td { border-bottom: 0; }
 
 /* ---------- Timing demo ---------- */

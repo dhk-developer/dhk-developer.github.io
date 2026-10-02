@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Touch FX · Dae Kang</title>
+<meta name="description" content="Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/touch-fx.html">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="Touch FX · Dae Kang">
+<meta property="og:description" content="Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/touch-fx.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Game development","Software development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Touch FX","headline":"An overlay that draws a little burst of shapes wherever you click on your Windows desktop","description":"Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, WPF, Win32 hooks, Custom drawing"}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="crumb"><a href="work.html">← All work</a></p>
+      <h1>Touch FX</h1>
+      <p class="line">An overlay that draws a little burst of shapes wherever you click on your Windows desktop</p>
+      <dl class="facts">
+        <div><dt>What it is</dt><dd>A Windows overlay, published as three releases</dd></div><div><dt>My role</dt><dd>I wrote and released it on my own</dd></div><div><dt>Built with</dt><dd>C#, WPF and a low-level mouse hook</dd></div>
+        <div><dt>When</dt><dd>2026</dd></div>
+      </dl>
+      <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/Blue-Archive-Touch-fx" rel="noopener">Source and releases</a></p>
+      <figure class="media">
+  <div class="media-frame" data-video>
+    <video controls muted playsinline loop preload="none" poster="assets/media/touch-fx.webp" width="960" height="540" aria-label="Close-up of a pale desktop wallpaper. Each mouse click produces a small blue burst of rings, triangles and squares that fades out in under a second.">
+      <source src="assets/media/touch-fx.mp4" type="video/mp4">
+    </video>
+    <button class="play" type="button" hidden><span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1l11 6-11 6z"/></svg>Play clip (0:06)</span></button>
+  </div>
+  <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><span class="muted">No sound</span></div>
+  <figcaption>A cropped recording of me clicking around the desktop. Each burst is gone in under a second, and between clicks the app isn&#39;t drawing anything.</figcaption>
+</figure>
+    </div>
+  </header>
+  <div class="wrap case-body has-toc">
+    <nav class="toc" aria-label="On this page">
+  <details open data-toc>
+    <summary>On this page</summary>
+    <ol><li><a href="#why-i-made-it">Why I made it</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#releases">Releases</a></li><li><a href="#what-id-change">What I&#39;d change</a></li></ol>
+  </details>
+</nav>
+    <div class="prose">
+      <h2 id="why-i-made-it">Why I made it</h2>
+<p>Some mobile games draw a little burst of shapes wherever you tap, and I wanted the same thing on my Windows desktop. It&#39;s a fan project and isn&#39;t connected to any game company.</p>
+<p>I had a few requirements for it. It had to work across every monitor, it could never swallow a click that was meant for another app, and when nobody was clicking it shouldn&#39;t be using any resources to speak of.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>A window that sits on top of everything normally receives every click aimed at the area it covers, so a full-screen overlay built the ordinary way would make the rest of the desktop unusable. The effect is drawn on a borderless, transparent WPF window that covers every monitor and stays on top of everything else. The window&#39;s style flags tell Windows to pass every click straight through to whatever is underneath, and also keep it out of the Alt-Tab list, so as far as you&#39;re concerned it isn&#39;t there.</p>
+<p>To know when you&#39;ve clicked, the app installs a low-level mouse hook. The hook does as little as possible: it notes the position of each left click and hands it over to the UI thread, which does the drawing, so the hook returns straight away and never slows your mouse down.</p>
+<p>Each click spawns a pulse, a spinning arc and a handful of small shapes that fade out. The window only subscribes to WPF&#39;s per-frame rendering while at least one effect is on screen, and unsubscribes once the last one has faded, so between clicks it isn&#39;t drawing anything. There&#39;s a hard limit on how many shapes can exist at once, and if you click very quickly the new bursts get smaller instead of piling up. The brushes and shapes are created once and frozen, which lets WPF reuse them cheaply.</p>
+<p>The app also reads the Windows light or dark setting and switches to stronger colours on bright backgrounds, and you can quit it from anywhere with Ctrl + Alt + Q or from its tray menu.</p>
+<h2 id="releases">Releases</h2>
+<p>I&#39;ve put out three small releases, v0.1.0 to v0.1.2. Each one came from using it day to day for a while: the first change made the effect bigger, and the second added the automatic light and dark colours.</p>
+<h2 id="what-id-change">What I&#39;d change</h2>
+<p>The next version should move to a composition-based renderer instead of a full-screen WPF window, which would bring the idle cost down to nothing, and it needs proper testing on monitors that use different scaling settings.</p>
+
+      <p style="margin-top:var(--s7)">If you'd like to keep reading, the next project is <a href="riot-analysis.html">League of Legends data study</a>: comparing what tends to win League of Legends games in 2020 and 2024, and why the comparison doesn&#39;t fully hold up.</p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>If you're hiring for a junior developer, particularly for a team working in C#, Unity or .NET, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to go through any of the projects on this site in more detail.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

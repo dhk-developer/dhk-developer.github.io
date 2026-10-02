@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Global equity indices · Dae Kang</title>
+<meta name="description" content="A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/equity-dashboard.html">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="Global equity indices · Dae Kang">
+<meta property="og:description" content="A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/equity-dashboard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Game development","Software development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Global equity indices","headline":"A Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019","description":"A Tableau dashboard comparing global equity index performance, risk and annual returns, focused on Asia-Pacific.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Tableau, Data preparation, Dashboard design"}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="crumb"><a href="work.html">← All work</a></p>
+      <h1>Global equity indices</h1>
+      <p class="line">A Tableau dashboard about how the Asia-Pacific stock markets drifted apart after 2019</p>
+      <dl class="facts">
+        <div><dt>What it is</dt><dd>A dashboard published on Tableau Public, March 2026</dd></div><div><dt>Data</dt><dd>Major indices, 2019 to June 2024</dd></div><div><dt>Built with</dt><dd>Tableau</dd></div>
+        <div><dt>When</dt><dd>2026</dd></div>
+      </dl>
+      <p class="case-links"><a class="ext" href="https://public.tableau.com/app/profile/daehurn/viz/GlobalEquityIndices/DivergingAsia-GlobalEquityTrends" rel="noopener">Open the live dashboard</a><a class="ext" href="https://github.com/dhk-developer/Tableau-Global-Equity-Indicies" rel="noopener">Repository</a></p>
+      <figure class="media portrait">
+  <div class="media-frame is-image"><img src="assets/media/equity-dashboard.webp" width="1100" height="1650" alt="The full Tableau dashboard: KPI cards, a line chart of index performance since 2019, a return against volatility scatter, a table of annual returns, a map of Asia-Pacific and written analysis." loading="eager" decoding="async"></div>
+  <figcaption>The whole dashboard as it appears on Tableau Public, where the live version also has filters and shows details when you hover over a chart.</figcaption>
+</figure>
+    </div>
+  </header>
+  <div class="wrap case-body has-toc">
+    <nav class="toc" aria-label="On this page">
+  <details open data-toc>
+    <summary>On this page</summary>
+    <ol><li><a href="#what-its-for">What it&#39;s for</a></li><li><a href="#how-i-put-it-together">How I put it together</a></li><li><a href="#what-it-showed-up-to-24-june-2024">What it showed (up to 24 June 2024)</a></li><li><a href="#what-id-change">What I&#39;d change</a></li></ol>
+  </details>
+</nav>
+    <div class="prose">
+      <h2 id="what-its-for">What it&#39;s for</h2>
+<p>I wanted to build a single page that would answer a fairly simple question: how have the world&#39;s major stock markets done since 2019, how bumpy has that been, and which markets are ahead this year? Once I started looking at the data, the most interesting part was Asia-Pacific, where the markets had drifted furthest apart, so the dashboard ended up focusing there.</p>
+<h2 id="how-i-put-it-together">How I put it together</h2>
+<p>The dashboard has three main views on one screen. The first shows performance since 2019 with every index rebased to 100, the second plots this year&#39;s return against volatility, and the third is a table of annual returns by market. Each view answers one question and leaves the others to the rest of the dashboard.</p>
+<p>The long-run chart and the table only use ten headline indices, because with more than that they became hard to read, but the scatter uses a wider set to give more context for the current year. Since that difference could easily confuse someone, the dashboard says which set each view uses.</p>
+<p>Along the top are a few headline figures: the best and worst performer this year, the strongest growth since 2019 and the deepest fall. Each of them has a definition next to it, because a label like &quot;best market&quot; can mean several different things. I also wrote out the main points in a short piece of text beside the charts, together with the things the data can&#39;t tell you.</p>
+<h2 id="what-it-showed-up-to-24-june-2024">What it showed (up to 24 June 2024)</h2>
+<p>Taiwan&#39;s index was leading the year, while the NASDAQ Composite had grown the most since 2019. Among the headline indices, Hang Seng had the deepest fall, and the Latin American markets were lagging in 2024.</p>
+<h2 id="what-id-change">What I&#39;d change</h2>
+<p>Most of the time went into deciding what to leave out. Next time I&#39;d show a draft to two or three people before publishing it, to check that they read the charts the way I intended before the layout was fixed.</p>
+
+      <p style="margin-top:var(--s7)">If you'd like to keep reading, the next project is <a href="structure-search.html">Polymer structure search</a>: research code from a summer placement at Cambridge that generates random polymer structures and relaxes them with a force field.</p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>If you're hiring for a junior developer, particularly for a team working in C#, Unity or .NET, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to go through any of the projects on this site in more detail.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

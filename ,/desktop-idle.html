@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DesktopIdle · Dae Kang</title>
+<meta name="description" content="DesktopIdle: a .NET 8 Windows tray app that clears and restores the desktop after inactivity, using Win32 idle detection and media-session checks.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/desktop-idle.html">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="DesktopIdle · Dae Kang">
+<meta property="og:description" content="DesktopIdle: a .NET 8 Windows tray app that clears and restores the desktop after inactivity, using Win32 idle detection and media-session checks.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/desktop-idle.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Game development","Software development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"DesktopIdle","headline":"A small tray app that tidies your Windows desktop away when you leave the computer, and puts everything back when you return","description":"DesktopIdle: a .NET 8 Windows tray app that clears and restores the desktop after inactivity, using Win32 idle detection and media-session checks.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, .NET 8, WinForms, Win32 P/Invoke, WinRT media sessions, JSON settings"}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="crumb"><a href="work.html">← All work</a></p>
+      <h1>DesktopIdle</h1>
+      <p class="line">A small tray app that tidies your Windows desktop away when you leave the computer, and puts everything back when you return</p>
+      <dl class="facts">
+        <div><dt>What it is</dt><dd>A Windows tray utility, published as two releases</dd></div><div><dt>My role</dt><dd>I wrote and released it on my own</dd></div><div><dt>Built with</dt><dd>C#, .NET 8, WinForms and Win32 calls</dd></div>
+        <div><dt>When</dt><dd>2026</dd></div>
+      </dl>
+      <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/DesktopIdle" rel="noopener">Source and releases</a></p>
+      <figure class="media">
+  <div class="media-frame" data-video>
+    <video controls muted playsinline loop preload="none" poster="assets/media/desktop-idle.webp" width="1280" height="728" aria-label="A Windows desktop with an Explorer window open. After a few seconds of no input the window minimises and the taskbar hides, leaving only the wallpaper. When the mouse moves, the window and taskbar come back.">
+      <source src="assets/media/desktop-idle.mp4" type="video/mp4">
+    </video>
+    <button class="play" type="button" hidden><span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1l11 6-11 6z"/></svg>Play clip (0:13)</span></button>
+  </div>
+  <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><span class="muted">No sound</span></div>
+  <figcaption>Recorded on my own PC with the idle time turned down to 15 seconds, so you can see the window and taskbar disappear and then come back as soon as the mouse moves.</figcaption>
+</figure>
+    </div>
+  </header>
+  <div class="wrap case-body has-toc">
+    <nav class="toc" aria-label="On this page">
+  <details open data-toc>
+    <summary>On this page</summary>
+    <ol><li><a href="#why-i-made-it">Why I made it</a></li><li><a href="#working-out-when-someone-has-left-the-computer">Working out when someone has left the computer</a></li><li><a href="#the-version-that-kept-waking-itself-up">The version that kept waking itself up</a></li><li><a href="#a-few-other-decisions">A few other decisions</a></li><li><a href="#what-id-add-next">What I&#39;d add next</a></li></ol>
+  </details>
+</nav>
+    <div class="prose">
+      <h2 id="why-i-made-it">Why I made it</h2>
+<p>Windows already has Show desktop, but you have to ask for it. What I wanted was for my desktop to clear itself when I walked away from the computer, so that the wallpaper would sit there like a quiet screensaver, and for every window to come back exactly where it was when I returned. It also needed to leave me alone if I was in the middle of a game or watching something.</p>
+<p>DesktopIdle is the small tray app I wrote to do that. I&#39;ve published two versions on GitHub, and each one is a single .exe that runs without needing .NET installed separately.</p>
+<h2 id="working-out-when-someone-has-left-the-computer">Working out when someone has left the computer</h2>
+<p>Windows will tell you how long it&#39;s been since the last key press or mouse movement, but on its own that number gets a few situations wrong. A film playing full screen involves no input at all, but I&#39;m clearly still watching it, and a YouTube tab only matters while the video is playing, since once it&#39;s paused there&#39;s no reason to keep the desktop as it is. There are also apps, games in particular, that should never trigger it, and a few windows, like a music player, that I&#39;d prefer to leave visible when everything else is minimised.</p>
+<p>So before the idle timer is allowed to count, the app checks whether one of the excluded apps is in front, and whether the window in front fills its monitor. For browsers it looks at the window title to spot a video site and then asks the Windows media-session API whether anything is playing. That last check is fairly slow, so its result is cached for a short time.</p>
+<h2 id="the-version-that-kept-waking-itself-up">The version that kept waking itself up</h2>
+<p>To clear the desktop, the app moves the cursor away from the taskbar and minimises the open windows, and both of those count as input as far as Windows is concerned. Input is exactly what ends idle mode, so the first release would sometimes wake up again a fraction of a second after it had started.</p>
+<p>Thinking about it afterwards, the mistake was in how I&#39;d described the behaviour to myself before writing any code. I&#39;d been thinking &quot;exit when the user moves&quot;, when what I meant was &quot;exit when the user moves, but ignore the movement the app causes itself&quot;. Once I&#39;d written that down properly the fix for v1.0.1 was fairly clear:</p>
+<ol>
+<li>Ignore input for a short grace period straight after the desktop is cleared.</li>
+<li>Make a note of where the cursor ended up.</li>
+<li>Only wake up again once the cursor has moved at least 100 pixels from that spot, so that knocking the desk doesn&#39;t count.</li>
+</ol>
+<h2 id="a-few-other-decisions">A few other decisions</h2>
+<p>I didn&#39;t want to hide the cursor by changing the system cursor, because if the app crashed at the wrong moment the change would outlive it and leave someone without a pointer. Instead the app puts an almost invisible full-screen window on top whose cursor is blank, and if the app dies, that window goes with it.</p>
+<p>While the desktop is clear the app turns on taskbar auto-hide, but it saves your own setting first and puts it back afterwards. Windows are restored in their original order with a tiny delay between each one, which stops them all trying to redraw at the same moment. The settings live in a plain JSON file, and each value is checked against a sensible minimum when it&#39;s loaded, so a typo can&#39;t set the idle time to zero.</p>
+<h2 id="what-id-add-next">What I&#39;d add next</h2>
+<p>The idle logic is a small state machine, and at the moment the only way to test it is on a real desktop. The next step is to pull it out into a class that automated tests can drive directly, starting with the grace-period handling, since that is the part most likely to break if the timings change.</p>
+
+      <p style="margin-top:var(--s7)">If you'd like to keep reading, the next project is <a href="touch-fx.html">Touch FX</a>: an overlay that draws a little burst of shapes wherever you click on your Windows desktop.</p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>If you're hiring for a junior developer, particularly for a team working in C#, Unity or .NET, I'd be glad to hear from you. Email is the easiest way to reach me, and I'm happy to go through any of the projects on this site in more detail.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
