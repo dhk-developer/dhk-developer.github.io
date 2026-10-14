@@ -167,6 +167,162 @@
     }
   }
 
+  /* ---- Film advancing as the page scrolls ---- */
+  if (!reduceMotion) {
+    var scrollQueued = false;
+    window.addEventListener("scroll", function () {
+      if (scrollQueued) return;
+      scrollQueued = true;
+      requestAnimationFrame(function () { root.style.setProperty("--scroll", Math.round(window.scrollY) + "px"); scrollQueued = false; });
+    }, { passive: true });
+  }
+
+  /* ---- Work: pieces lean toward the pointer ---- */
+  if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+    Array.prototype.slice.call(doc.querySelectorAll(".work-link")).forEach(function (link) {
+      var printEl = link.querySelector(".print");
+      if (!printEl) return;
+      link.addEventListener("pointermove", function (e) {
+        var r = printEl.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        printEl.style.setProperty("--ry", (x * 8).toFixed(2) + "deg");
+        printEl.style.setProperty("--rx", (-y * 6).toFixed(2) + "deg");
+      });
+      link.addEventListener("pointerleave", function () { printEl.style.removeProperty("--ry"); printEl.style.removeProperty("--rx"); });
+    });
+  }
+
+  /* ---- Home: the Memora reel in three.js ---- */
+  var reelFig = doc.querySelector("[data-reel]");
+  if (reelFig && !reduceMotion && webglAvailable()) {
+    var loadThree = function () {
+      if (window.THREE) return memoraReel(reelFig);
+      var tag = doc.createElement("script");
+      tag.src = "assets/vendor/three.min.js";
+      tag.onload = function () { memoraReel(reelFig); };
+      doc.head.appendChild(tag);
+    };
+    if ("requestIdleCallback" in window) window.requestIdleCallback(loadThree, { timeout: 1200 }); else setTimeout(loadThree, 300);
+  }
+
+  function webglAvailable() {
+    try { var c = doc.createElement("canvas"); return !!(window.WebGLRenderingContext && (c.getContext("webgl2") || c.getContext("webgl"))); }
+    catch (e) { return false; }
+  }
+
+  function memoraReel(fig) {
+    var THREE = window.THREE;
+    var canvas = fig.querySelector(".reel-canvas"), stage = fig.querySelector(".reel-stage");
+    var link = fig.querySelector(".reel-link"), still = fig.querySelector(".reel-still");
+    var renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); }
+    catch (e) { return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
+    camera.position.set(0, 0, 13);
+
+    // The strip: a long plane bent round a cylinder, so it curves away at both ends.
+    var LENGTH = 17, HEIGHT = 17 / 3.4, RADIUS = 7.5;
+    var geometry = new THREE.PlaneGeometry(LENGTH, HEIGHT, 180, 1);
+    var pos = geometry.attributes.position;
+    for (var i = 0; i < pos.count; i++) {
+      var x = pos.getX(i), angle = x / RADIUS;
+      pos.setXYZ(i, RADIUS * Math.sin(angle), pos.getY(i) + Math.sin(x * 0.35) * 0.18, RADIUS * (Math.cos(angle) - 1));
+    }
+    geometry.computeVertexNormals();
+
+    var texture = new THREE.TextureLoader().load(still.currentSrc || still.src, function () {
+      fig.classList.add("is-live");
+      start();
+    });
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.repeat.set(0.52, 1);
+    texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+
+    var material = new THREE.MeshStandardMaterial({ map: texture, side: THREE.DoubleSide, roughness: 0.85, metalness: 0 });
+    var strip = new THREE.Mesh(geometry, material);
+    var group = new THREE.Group();
+    group.add(strip);
+    group.rotation.set(0.12, 0, -0.1);
+    // Start inside the frame on the left and run off the right edge.
+    group.position.x = 0.8;
+    scene.add(group);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xd8dbe8, 2.2));
+    var key = new THREE.DirectionalLight(0xffffff, 1.1);
+    key.position.set(-3, 4, 8);
+    scene.add(key);
+
+    // Motion: the film advances on its own; dragging adds speed that eases back; the pointer leans the reel.
+    var BASE = 0.018, velocity = 0, target = { x: 0, y: 0 }, lean = { x: 0, y: 0 };
+    var dragging = false, dragged = 0, lastX = 0, lastT = 0, running = false, raf = 0, prev = 0, visible = true;
+
+    function resize() {
+      var w = stage.clientWidth, h = stage.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      // Keep the whole strip in view on narrow screens by pulling the camera back.
+      camera.position.z = Math.max(14.5, 14.5 * (1.6 / camera.aspect));
+      camera.updateProjectionMatrix();
+    }
+    function frame(t) {
+      var dt = Math.min(0.05, (t - (prev || t)) / 1000); prev = t;
+      velocity *= Math.pow(0.12, dt);
+      texture.offset.x = (texture.offset.x + (BASE + velocity) * dt) % 1;
+      lean.x += (target.x - lean.x) * Math.min(1, dt * 4);
+      lean.y += (target.y - lean.y) * Math.min(1, dt * 4);
+      group.rotation.y = lean.x * 0.32;
+      group.rotation.x = 0.12 + lean.y * 0.12;
+      renderer.render(scene, camera);
+      raf = running && visible ? requestAnimationFrame(frame) : 0;
+    }
+    function start() {
+      resize();
+      running = true;
+      if (!raf) { prev = 0; raf = requestAnimationFrame(frame); }
+    }
+
+    if ("ResizeObserver" in window) new ResizeObserver(resize).observe(stage); else window.addEventListener("resize", resize);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible && running && !raf) { prev = 0; raf = requestAnimationFrame(frame); }
+      }).observe(stage);
+    }
+    doc.addEventListener("visibilitychange", function () {
+      if (!doc.hidden && running && visible && !raf) { prev = 0; raf = requestAnimationFrame(frame); }
+    });
+
+    window.addEventListener("pointermove", function (e) {
+      var r = stage.getBoundingClientRect();
+      target.x = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width / 2)));
+      target.y = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (r.height / 2)));
+    }, { passive: true });
+    canvas.addEventListener("pointerdown", function (e) {
+      dragging = true; dragged = 0; lastX = e.clientX; lastT = e.timeStamp;
+      canvas.classList.add("is-dragging");
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - lastX, dtm = Math.max(8, e.timeStamp - lastT);
+      dragged += Math.abs(dx);
+      // Dragging left runs the film forward; the speed follows the hand.
+      velocity = Math.max(-1.2, Math.min(1.2, (-dx / stage.clientWidth) * (1000 / dtm) * 0.9));
+      texture.offset.x = (texture.offset.x - dx / stage.clientWidth * 0.5 + 1) % 1;
+      lastX = e.clientX; lastT = e.timeStamp;
+    });
+    var endDrag = function () { dragging = false; canvas.classList.remove("is-dragging"); };
+    canvas.addEventListener("pointerup", endDrag);
+    canvas.addEventListener("pointercancel", endDrag);
+    // A drag shouldn't count as a click through to the write-up.
+    link.addEventListener("click", function (e) { if (dragged > 6) { e.preventDefault(); dragged = 0; } });
+  }
+
   /* ---- Timing demo (Memora page) ---- */
   var pad = doc.querySelector("[data-demo-pad]");
   if (pad) timingDemo(pad);
