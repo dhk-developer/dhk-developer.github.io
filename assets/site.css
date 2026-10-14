@@ -165,8 +165,7 @@ strong { font-weight: 700; }
 .reel-print { position: relative; background: var(--print); padding: 8px; border-radius: 3px; box-shadow: var(--shadow-print); }
 .reel-print video { display: block; width: 100%; height: auto; aspect-ratio: 20 / 9; background: var(--paper-2); border-radius: 1px; }
 .reel-slide.is-playing .play { display: none; }
-.reel-slide figcaption { margin-top: var(--s3); font-size: 0.9375rem; color: var(--ink-2); max-width: 38rem; min-height: 3lh; }
-.reel-bar { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s4); margin-top: var(--s2); }
+.reel-bar { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s4); margin-top: var(--s3); }
 .reel-tabs { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); margin: 0; padding: 0; list-style: none; font-size: 0.9375rem; }
 .reel-tab { display: inline-flex; align-items: baseline; gap: var(--s2); padding-block: var(--s1); color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; }
 .reel-tab:hover { color: var(--ink); }
