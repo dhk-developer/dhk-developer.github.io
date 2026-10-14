@@ -1,6 +1,7 @@
 /* Dae Kang portfolio, v4: "contact sheet".
-   The site borrows Memora's day field: white paper washed with pink, navy ink, pink film strips,
-   white-bordered prints, manga screentone and hollow line motifs. Light only, like the game.
+   Projects sit as prints on film strips, with manga screentone and hollow line motifs from Memora.
+   Neutral white base and grey film; each project brings its own accent (see "Project colours").
+   Light only, like the game.
    One stylesheet. Tokens first, then base elements, then components in page order.
    Fonts are embedded at build time (see src/build.ts). */
 

@@ -13,7 +13,7 @@
   function dust(canvas) {
     var ctx = canvas.getContext("2d");
     var motes = [], w = 0, h = 0, raf = 0, last = 0, visible = true;
-    var colours = ["190,47,122", "44,102,200", "11,111,103", "122,93,0", "100,71,194"];
+    var colours = ["190,47,122", "11,111,103", "44,102,200", "163,72,10", "122,93,0", "100,71,194"];
     function size() {
       var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
       w = r.width; h = r.height;
