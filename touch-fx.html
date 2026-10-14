@@ -8,9 +8,8 @@
 <meta name="author" content="Daehurn Kang">
 <link rel="canonical" href="https://dhk-developer.github.io/touch-fx.html">
 
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#161815" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fff9fc">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dae Kang">
 <meta property="og:title" content="Touch FX · Dae Kang">
@@ -20,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")d.documentElement.setAttribute("data-theme",t)}catch(e){}})(document)</script>
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js")})(document)</script>
 <link rel="stylesheet" href="assets/site.css">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Power BI","Tableau","Data analysis","Business analysis","Game development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"Touch FX","headline":"An overlay that draws a little burst of shapes wherever you click on your Windows desktop","description":"Touch FX: a WPF click-through overlay with a global mouse hook that only renders while an effect is alive.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"C#, WPF, Win32 hooks, Custom drawing"}]</script>
 <script src="assets/site.js" defer></script>
@@ -35,7 +34,6 @@
         <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
       </ul>
     </nav>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Colour theme: follows your system. Change">Theme: auto</button>
   </div>
 </header>
 <main id="main" tabindex="-1">
@@ -43,7 +41,8 @@
 <article>
   <header class="case-head">
     <div class="wrap">
-      <p class="crumb"><a href="work.html">← All work</a></p>
+      <p class="crumb"><a class="back" href="work.html">All work</a></p>
+      <p class="case-strip" aria-hidden="true"><span>03</span><span>03A</span></p>
       <h1>Touch FX</h1>
       <p class="line">An overlay that draws a little burst of shapes wherever you click on your Windows desktop</p>
       <dl class="facts">

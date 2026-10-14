@@ -6,31 +6,51 @@
   var root = doc.documentElement;
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function store(key, value) {
-    try {
-      if (value === undefined) return localStorage.getItem(key);
-      if (value === null) localStorage.removeItem(key);
-      else localStorage.setItem(key, value);
-    } catch (e) { /* storage blocked: the setting just won't persist */ }
-    return null;
-  }
+  /* ---- Home: dust drifting through the light leak, as in Memora's menus ---- */
+  var dustCanvas = doc.querySelector("[data-dust]");
+  if (dustCanvas && dustCanvas.getContext && !reduceMotion) dust(dustCanvas);
 
-  /* ---- Theme: auto (system) -> light -> dark -> auto ---- */
-  var toggle = doc.querySelector("[data-theme-toggle]");
-  if (toggle) {
-    var order = ["auto", "light", "dark"];
-    var label = function (mode) {
-      toggle.textContent = "Theme: " + mode;
-      toggle.setAttribute("aria-label", "Colour theme: " + (mode === "auto" ? "follows your system" : mode) + ". Change");
-    };
-    var current = root.getAttribute("data-theme") || "auto";
-    label(current);
-    toggle.addEventListener("click", function () {
-      current = order[(order.indexOf(current) + 1) % order.length];
-      if (current === "auto") { root.removeAttribute("data-theme"); store("theme", null); }
-      else { root.setAttribute("data-theme", current); store("theme", current); }
-      label(current);
-    });
+  function dust(canvas) {
+    var ctx = canvas.getContext("2d");
+    var motes = [], w = 0, h = 0, raf = 0, last = 0, visible = true;
+    var colours = ["255,255,255", "255,214,234", "246,170,210"];
+    function size() {
+      var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+      w = r.width; h = r.height;
+      canvas.width = Math.round(w * d); canvas.height = Math.round(h * d);
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+      var count = Math.round(Math.min(70, (w * h) / 16000));
+      while (motes.length < count) motes.push(mote(true));
+      motes.length = count;
+    }
+    function mote(anywhere) {
+      return {
+        x: Math.random() * w, y: anywhere ? Math.random() * h : h + 8,
+        r: 0.6 + Math.random() * 1.9, vy: 4 + Math.random() * 10, sway: Math.random() * 6.28,
+        a: 0.25 + Math.random() * 0.55, c: colours[(Math.random() * colours.length) | 0]
+      };
+    }
+    function frame(t) {
+      var dt = Math.min(0.05, (t - (last || t)) / 1000); last = t;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < motes.length; i++) {
+        var m = motes[i];
+        m.y -= m.vy * dt; m.sway += dt * 0.6; m.x += Math.sin(m.sway) * 6 * dt;
+        if (m.y < -8) motes[i] = m = mote(false);
+        ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, 6.2832);
+        ctx.fillStyle = "rgba(" + m.c + "," + m.a + ")"; ctx.fill();
+      }
+      raf = visible ? requestAnimationFrame(frame) : 0;
+    }
+    size();
+    window.addEventListener("resize", size);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible && !raf) { last = 0; raf = requestAnimationFrame(frame); }
+      }).observe(canvas);
+    }
+    raf = requestAnimationFrame(frame);
   }
 
   /* ---- Copy email ---- */
