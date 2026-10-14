@@ -60,11 +60,12 @@
   <div class="media-frame" data-video>
     <video controls muted playsinline loop preload="none" poster="assets/media/memora-gameplay.webp" width="1280" height="648" aria-label="Memora gameplay: notes and bars sweep across a black playfield while the camera frame tilts and zooms.">
       <source src="assets/media/memora-gameplay.mp4" type="video/mp4">
+      <track kind="descriptions" src="assets/media/memora-gameplay.vtt" srclang="en" label="What happens on screen">
     </video>
     <button class="play" type="button" hidden><span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1l11 6-11 6z"/></svg>Play clip (0:51)</span></button>
   </div>
-  <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><span class="muted">No sound</span></div>
-  
+  <div class="video-controls" hidden><button type="button" data-video-toggle>Pause</button><button type="button" data-video-full>Full screen</button><span class="muted">No sound</span></div>
+  <figcaption>A muted recording of one of my charts. Notes fly into square targets in open space and run in yellow staircases and crossing rows, and in places the whole field shrinks into a white photo frame that tilts like a print. It shows the game&#39;s earlier black field, from before its current art direction.</figcaption>
 </figure>
       </div>
     </div>
@@ -222,42 +223,61 @@
 <p>Notes approach their targets in one of two ways. The default, predictive approach heads for where the target will be on the hit beat, which reads clearly when a line is about to move. The adaptive approach follows the target&#39;s current position instead, and that needs extra care when a line teleports, meaning it jumps to a new position in zero time. Without a correction the note would jump along with the line, so the game compiles a schedule of teleports from the chart and derives the correction from that schedule every time, which keeps the result independent of the previous frame and of the order in which the editor seeks.</p>
 <h2 id="the-charting-editor">The charting editor</h2>
 <p>A Memora chart is a JSON file. The excerpt below is cut down from the format the game reads, with the field names simplified, and shows one judgement line that rotates, one note on that line and a second note aimed at the first.</p>
-<pre><code class="language-json">{
-  &quot;bpm&quot;: 128,
-  &quot;lines&quot;: [
-    { &quot;id&quot;: &quot;L2&quot;, &quot;lifetime&quot;: { &quot;start&quot;: 16, &quot;duration&quot;: 32 } }
+<pre tabindex="0" role="region" aria-label="JSON example"><code class="language-json">{
+  "bpm": 128,
+  "lines": [
+    { "id": "L2",
+      "lifetime": {
+        "start": 16, "duration": 32 } }
   ],
-  &quot;lineEvents&quot;: [
-    { &quot;lineId&quot;: &quot;L2&quot;, &quot;channel&quot;: &quot;rotation&quot;, &quot;beat&quot;: 24, &quot;duration&quot;: 4,
-      &quot;from&quot;: 0, &quot;to&quot;: -12, &quot;easing&quot;: &quot;outCubic&quot; }
+  "lineEvents": [
+    { "lineId": "L2",
+      "channel": "rotation",
+      "beat": 24, "duration": 4,
+      "from": 0, "to": -12,
+      "easing": "outCubic" }
   ],
-  &quot;notes&quot;: [
+  "notes": [
     {
-      &quot;id&quot;: &quot;n-01&quot;,
-      &quot;judgement&quot;: {
-        &quot;beat&quot;: 32, &quot;action&quot;: &quot;tap&quot;,
-        &quot;target&quot;: { &quot;kind&quot;: &quot;line&quot;, &quot;lineId&quot;: &quot;L2&quot;, &quot;along&quot;: 0.62 }
+      "id": "n-01",
+      "judgement": {
+        "beat": 32, "action": "tap",
+        "target": {
+          "kind": "line",
+          "lineId": "L2",
+          "along": 0.62
+        }
       },
-      &quot;presentation&quot;: {
-        &quot;approach&quot;: &quot;predictive&quot;,
-        &quot;keys&quot;: [
-          { &quot;beat&quot;: -2.0, &quot;progress&quot;: 0.0,  &quot;lateral&quot;: -0.35, &quot;opacity&quot;: 0.0 },
-          { &quot;beat&quot;: -0.5, &quot;progress&quot;: 0.85, &quot;lateral&quot;: 0.1,   &quot;opacity&quot;: 1.0 },
-          { &quot;beat&quot;: 0.0,  &quot;progress&quot;: 1.0,  &quot;lateral&quot;: 0.0,   &quot;opacity&quot;: 1.0 }
+      "presentation": {
+        "approach": "predictive",
+        "keys": [
+          { "beat": -2.0, "progress": 0.0,
+            "lateral": -0.35,
+            "opacity": 0.0 },
+          { "beat": -0.5, "progress": 0.85,
+            "lateral": 0.1,
+            "opacity": 1.0 },
+          { "beat": 0.0, "progress": 1.0,
+            "lateral": 0.0,
+            "opacity": 1.0 }
         ]
       }
     },
     {
-      &quot;id&quot;: &quot;n-02&quot;,
-      &quot;judgement&quot;: {
-        &quot;beat&quot;: 33, &quot;action&quot;: &quot;tap&quot;,
-        &quot;target&quot;: { &quot;kind&quot;: &quot;note&quot;, &quot;noteId&quot;: &quot;n-01&quot; }
+      "id": "n-02",
+      "judgement": {
+        "beat": 33, "action": "tap",
+        "target": {
+          "kind": "note",
+          "noteId": "n-01"
+        }
       },
-      &quot;presentation&quot;: { &quot;approach&quot;: &quot;adaptive&quot; }
+      "presentation": {
+        "approach": "adaptive"
+      }
     }
   ]
-}
-</code></pre>
+}</code></pre>
 <p>Lines are objects with a lifetime, and their movement is stored as events on separate channels for position, rotation and appearance, each with a start beat, a duration and an easing curve. Every note keeps its <code>judgement</code> and <code>presentation</code> records apart. The first note is judged 62% of the way along line L2 on beat 32, and its presentation keys describe its path in beats relative to that hit, so it fades in two beats early, swings in from the side and settles onto the line. The second note is judged on beat 33 at wherever the first note is at that moment, and follows it adaptively. A full chart holds many more of these records, together with scroll-speed changes, moving target points, camera frames and decorative effects.</p>
 <p>Writing that by hand isn&#39;t realistic, so I built an editor window inside Unity for authoring charts. The timeline shows each line, target point, camera frame and effect as a group of tracks for its lifetime, motion, appearance and layers, with the notes in a lane beneath them. Above the timeline, a preview draws the gamefield exactly as the player will see it at the current beat, and clicking in the preview selects the line or note underneath. Decorative effects such as rings, scanner sweeps and tunnels are driven by the same beat-based tracks, and a layers system combines their position, rotation, scale, alpha and tint in a fixed order that never touches the judgement records.</p>
 <figure class="media">

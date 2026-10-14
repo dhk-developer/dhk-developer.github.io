@@ -83,6 +83,7 @@
     var play = frame.querySelector(".play");
     var controls = frame.parentNode.querySelector(".video-controls");
     var toggleBtn = controls && controls.querySelector("[data-video-toggle]");
+    var fullBtn = controls && controls.querySelector("[data-video-full]");
     if (!video || !play) return;
     video.removeAttribute("controls");
     play.hidden = false;
@@ -100,6 +101,11 @@
     play.addEventListener("click", function () { start(); if (toggleBtn) toggleBtn.focus(); });
     video.addEventListener("click", function () { if (!video.paused) video.pause(); });
     if (toggleBtn) toggleBtn.addEventListener("click", function () { if (video.paused) start(); else video.pause(); });
+    if (fullBtn) {
+      var enter = video.requestFullscreen || video.webkitRequestFullscreen || video.webkitEnterFullscreen;
+      if (enter) fullBtn.addEventListener("click", function () { if (video.paused) start(); enter.call(video); });
+      else fullBtn.hidden = true;
+    }
     video.addEventListener("play", sync);
     video.addEventListener("pause", sync);
     players.push(video);
@@ -113,7 +119,13 @@
   /* ---- "On this page": collapse on small screens, highlight the current section ---- */
   var tocDetails = doc.querySelector("[data-toc]");
   if (tocDetails) {
-    if (window.matchMedia("(max-width: 63.99rem)").matches) tocDetails.open = false;
+    // Open as a sidebar on wide screens and collapsed above the text on narrow ones,
+    // following the window if it is resized across the breakpoint.
+    var wide = window.matchMedia("(min-width: 64rem)");
+    var fitToc = function () { tocDetails.open = wide.matches; };
+    fitToc();
+    if (wide.addEventListener) wide.addEventListener("change", fitToc);
+    else if (wide.addListener) wide.addListener(fitToc);
     var links = Array.prototype.slice.call(tocDetails.querySelectorAll("a[href^='#']"));
     var targets = links.map(function (a) { return doc.getElementById(a.getAttribute("href").slice(1)); }).filter(Boolean);
     if ("IntersectionObserver" in window && targets.length) {
@@ -183,6 +195,14 @@
     function start() {
       if (!ctx) ctx = new AC();
       if (ctx.resume) ctx.resume();
+      // Some browsers keep audio blocked; the clock then never moves, so say so instead of waiting forever.
+      setTimeout(function () {
+        if (running && ctx.state === "suspended") {
+          stop();
+          result.textContent = "Your browser hasn't let the audio clock start";
+          detail.textContent = "Check that this tab isn't muted, then press Start again. The demo needs the audio clock to keep time, even with the click sound off.";
+        }
+      }, (LEAD + 0.5) * 1000);
       running = true;
       t0 = ctx.currentTime + LEAD;
       nextClick = t0;
