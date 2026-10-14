@@ -113,7 +113,7 @@ strong { font-weight: 700; }
   background-size: 6px 6px; background-position: 0 0, 3px 3px;
 }
 
-/* ---------- Home: hero and the playable Memora core ---------- */
+/* ---------- Home: hero and the Memora reel ---------- */
 .hero { position: relative; overflow: clip; padding-block: var(--s8) var(--s9); border-bottom: 1px solid var(--rule); }
 .hero::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 45%; pointer-events: none;
@@ -137,7 +137,7 @@ strong { font-weight: 700; }
   .hero-grid { display: flex; flex-direction: column; gap: var(--s5); }
   .hero-copy { display: contents; }
   .hero h1 { order: 1; margin-bottom: 0; }
-  .hero .core { order: 2; margin-block: 0 var(--s2); }
+  .hero .reel { order: 2; margin-block: 0 var(--s2); }
   .hero .lede { order: 3; }
   .hero .intro-links { order: 4; margin-top: 0; }
 }
@@ -150,33 +150,38 @@ strong { font-weight: 700; }
 .intro .lede { font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); max-width: var(--measure); }
 .intro-links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s5); font-size: 1rem; font-weight: 500; }
 
-/* The playable Memora core: a 16:9 day-field playfield set as a print, with its controls beneath. */
-.core { margin: 0; }
-.core-stage {
-  position: relative; display: block; aspect-ratio: 16 / 9; background: var(--print); padding: 8px;
-  border-radius: 3px; box-shadow: var(--shadow-print); touch-action: pan-y; user-select: none; -webkit-user-select: none;
+/* The Memora reel: clips from the game as 20:9 prints in a scroll-snapped row, frame-numbered tabs beneath. */
+.reel { margin: 0; min-width: 0; }
+.reel-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: calc(2 * var(--s3)); list-style: none;
+  /* Room inside the scroller so the print shadow isn't clipped. */
+  margin: calc(-1 * var(--s3)); padding: var(--s3); scroll-padding-inline: var(--s3);
+  overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
 }
-.core.is-playing .core-stage { touch-action: none; }
-.core-stage:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.core-stage canvas, .core-still { display: block; width: 100%; height: 100%; border-radius: 1px; }
-.core-stage canvas { display: none; }
-.core.is-ready .core-stage canvas { display: block; }
-.core.is-ready .core-still { display: none; }
-.core-overlay { position: absolute; inset: 8px; display: none; place-items: center; background: rgba(255, 255, 255, 0.35); }
-.core.is-ready .core-overlay { display: grid; }
-.core.is-ready .core-overlay[hidden] { display: none; }
-.core-controls { display: none; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s5); margin-top: var(--s3); font-size: 0.9375rem; color: var(--ink-2); }
-.core.is-ready .core-controls { display: flex; }
-.core-controls label { display: inline-flex; align-items: center; gap: var(--s2); }
-.core-controls input[type="range"] { width: 8rem; accent-color: var(--accent); }
-.core-controls input[type="checkbox"] { accent-color: var(--accent); }
-.core-controls output { font-variant-numeric: tabular-nums; min-width: 4.5ch; color: var(--ink); }
-.core-button { font: inherit; font-weight: 500; color: var(--accent); background: var(--print); border: 1px solid var(--rule-strong); border-radius: 999px; padding: var(--s1) var(--s4); cursor: pointer; }
-.core-button:hover { border-color: var(--accent); }
-.core figcaption { margin-top: var(--s3); font-size: 0.9375rem; color: var(--ink-2); max-width: 36rem; }
-.core-help { display: none; }
-.core.is-ready .core-help { display: inline; }
-@media (min-width: 64rem) { .hero-grid .core { margin-right: calc(-1 * min(var(--s7), max(0px, (100vw - var(--wide) - 2 * var(--gutter)) / 2))); } }
+.reel-track::-webkit-scrollbar { display: none; }
+.reel-track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.reel-slide { scroll-snap-align: start; min-width: 0; }
+.reel-slide figure { margin: 0; }
+.reel-print { position: relative; background: var(--print); padding: 8px; border-radius: 3px; box-shadow: var(--shadow-print); }
+.reel-print video { display: block; width: 100%; height: auto; aspect-ratio: 20 / 9; background: var(--paper-2); border-radius: 1px; }
+.reel-slide.is-playing .play { display: none; }
+.reel-slide figcaption { margin-top: var(--s3); font-size: 0.9375rem; color: var(--ink-2); max-width: 38rem; min-height: 3lh; }
+.reel-bar { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s4); margin-top: var(--s2); }
+.reel-tabs { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); margin: 0; padding: 0; list-style: none; font-size: 0.9375rem; }
+.reel-tab { display: inline-flex; align-items: baseline; gap: var(--s2); padding-block: var(--s1); color: var(--ink-2); text-decoration: none; border-bottom: 2px solid transparent; }
+.reel-tab:hover { color: var(--ink); }
+.reel-tab[aria-current] { color: var(--ink); border-bottom-color: var(--accent); }
+.reel-no { font-variant-numeric: tabular-nums; font-size: 0.75rem; letter-spacing: 0.06em; color: var(--accent); }
+.reel-arrows { display: flex; gap: var(--s2); flex-shrink: 0; }
+.reel-arrows[hidden] { display: none; }
+.reel-arrow {
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; cursor: pointer;
+  background: var(--print); border: 1px solid var(--rule-strong); color: var(--ink);
+}
+.reel-arrow:hover { border-color: var(--accent); color: var(--accent); }
+.reel-arrow svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.reel:not(.is-ready) .reel-track { grid-auto-columns: 92%; }
+@media (min-width: 64rem) { .hero-grid .reel { margin-right: calc(-1 * min(var(--s7), max(0px, (100vw - var(--wide) - 2 * var(--gutter)) / 2))); } }
 
 /* A print: white border, soft paper shadow. */
 .print {

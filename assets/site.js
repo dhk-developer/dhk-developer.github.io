@@ -192,11 +192,83 @@
     });
   }
 
-  /* ---- Home: the playable Memora core (assets/memora-core.js) ---- */
-  if (doc.querySelector("[data-core]")) {
-    var coreTag = doc.createElement("script");
-    coreTag.src = "assets/memora-core.js";
-    doc.head.appendChild(coreTag);
+  /* ---- Home: the Memora reel. Nothing plays until asked; then each clip runs on into the next. ---- */
+  var reel = doc.querySelector("[data-reel]");
+  if (reel) {
+    var track = reel.querySelector(".reel-track");
+    var slides = Array.prototype.slice.call(reel.querySelectorAll(".reel-slide"));
+    var tabs = Array.prototype.slice.call(reel.querySelectorAll("[data-reel-tab]"));
+    var status = reel.querySelector("[data-reel-status]");
+    var current = 0, running = false, steering = false;
+    reel.querySelector(".reel-arrows").hidden = false;
+    reel.classList.add("is-ready");
+    var videoAt = function (i) { return slides[i].querySelector("video"); };
+    var playingNow = function () { return running && !videoAt(current).paused; };
+    var mark = function (i) {
+      current = i;
+      tabs.forEach(function (t, k) { if (k === i) t.setAttribute("aria-current", "true"); else t.removeAttribute("aria-current"); });
+      slides.forEach(function (s, k) { s.classList.toggle("is-current", k === i); s.inert = k !== i; });
+    };
+    var startClip = function (i) {
+      var v = videoAt(i);
+      players.forEach(function (p) { if (p !== v) p.pause(); });
+      running = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { running = false; v.setAttribute("controls", ""); });
+    };
+    var go = function (i, play) {
+      i = (i + slides.length) % slides.length;
+      slides.forEach(function (s, k) { if (k !== i) videoAt(k).pause(); });
+      var left = track.scrollLeft + slides[i].getBoundingClientRect().left - track.getBoundingClientRect().left - (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0);
+      steering = Math.abs(track.scrollLeft - left) > 1;
+      track.scrollTo({ left: left, behavior: reduceMotion ? "auto" : "smooth" });
+      mark(i);
+      if (status) status.textContent = "Clip " + (i + 1) + " of " + slides.length + ": " + tabs[i].lastChild.textContent;
+      if (play) startClip(i);
+    };
+    slides.forEach(function (slide, i) {
+      var v = videoAt(i), btn = slide.querySelector(".play");
+      v.removeAttribute("controls");
+      btn.hidden = false;
+      // Under reduced motion a clip loops in place instead of handing on to the next one.
+      v.loop = reduceMotion;
+      btn.addEventListener("click", function () { startClip(i); });
+      v.addEventListener("click", function () { if (!v.paused) { running = false; v.pause(); } else startClip(i); });
+      v.addEventListener("play", function () { slide.classList.add("is-playing"); });
+      v.addEventListener("pause", function () { slide.classList.remove("is-playing"); });
+      v.addEventListener("ended", function () { if (running && i === current) go(i + 1, true); });
+      players.push(v);
+    });
+    tabs.forEach(function (t, i) { t.addEventListener("click", function (e) { e.preventDefault(); go(i, playingNow()); }); });
+    Array.prototype.slice.call(reel.querySelectorAll("[data-reel-step]")).forEach(function (b) {
+      b.addEventListener("click", function () { go(current + Number(b.getAttribute("data-reel-step")), playingNow()); });
+    });
+    track.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      e.preventDefault();
+      go(current + (e.key === "ArrowRight" ? 1 : -1), playingNow());
+    });
+    // A swipe or trackpad scroll settles on a slide: follow it, carrying playback over if a clip was running.
+    var settle = 0;
+    track.addEventListener("scroll", function () {
+      clearTimeout(settle);
+      settle = setTimeout(function () {
+        if (steering) { steering = false; return; }
+        var pitch = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth;
+        var i = Math.round(track.scrollLeft / Math.max(1, pitch));
+        if (i === current || !slides[i]) return;
+        var was = playingNow();
+        videoAt(current).pause();
+        mark(i);
+        if (was) startClip(i);
+      }, 140);
+    }, { passive: true });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) slides.forEach(function (s, k) { videoAt(k).pause(); });
+      }, { threshold: 0.15 }).observe(track);
+    }
+    mark(0);
   }
 
   /* ---- Timing demo (Memora page) ---- */
