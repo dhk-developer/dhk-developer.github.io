@@ -13,7 +13,7 @@
   function dust(canvas) {
     var ctx = canvas.getContext("2d");
     var motes = [], w = 0, h = 0, raf = 0, last = 0, visible = true;
-    var colours = ["255,255,255", "255,214,234", "246,170,210"];
+    var colours = ["190,47,122", "44,102,200", "11,111,103", "122,93,0", "100,71,194"];
     function size() {
       var r = canvas.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
       w = r.width; h = r.height;
@@ -27,7 +27,7 @@
       return {
         x: Math.random() * w, y: anywhere ? Math.random() * h : h + 8,
         r: 0.6 + Math.random() * 1.9, vy: 4 + Math.random() * 10, sway: Math.random() * 6.28,
-        a: 0.25 + Math.random() * 0.55, c: colours[(Math.random() * colours.length) | 0]
+        a: 0.12 + Math.random() * 0.3, c: colours[(Math.random() * colours.length) | 0]
       };
     }
     function frame(t) {
