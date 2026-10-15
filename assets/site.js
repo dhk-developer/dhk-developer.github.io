@@ -192,18 +192,20 @@
     });
   }
 
-  /* ---- Home: the Memora reel. Nothing plays until asked; then each clip runs on into the next. ---- */
+  /* ---- Home: the Memora reel. Clips play muted while it is on screen and run on into each other. ---- */
   var reel = doc.querySelector("[data-reel]");
   if (reel) {
     var track = reel.querySelector(".reel-track");
     var slides = Array.prototype.slice.call(reel.querySelectorAll(".reel-slide"));
     var tabs = Array.prototype.slice.call(reel.querySelectorAll("[data-reel-tab]"));
     var status = reel.querySelector("[data-reel-status]");
-    var current = 0, running = false, steering = false;
+    var current = 0, running = false, steering = false, inView = false;
+    // Autoplay is on unless the visitor prefers reduced motion or has paused a clip themselves.
+    var autoplay = !reduceMotion, userPaused = false;
     reel.querySelector(".reel-arrows").hidden = false;
     reel.classList.add("is-ready");
     var videoAt = function (i) { return slides[i].querySelector("video"); };
-    var playingNow = function () { return running && !videoAt(current).paused; };
+    var playingNow = function () { return (running && !videoAt(current).paused) || (autoplay && !userPaused && inView); };
     var mark = function (i) {
       current = i;
       tabs.forEach(function (t, k) { if (k === i) t.setAttribute("aria-current", "true"); else t.removeAttribute("aria-current"); });
@@ -232,8 +234,11 @@
       btn.hidden = false;
       // Under reduced motion a clip loops in place instead of handing on to the next one.
       v.loop = reduceMotion;
-      btn.addEventListener("click", function () { startClip(i); });
-      v.addEventListener("click", function () { if (!v.paused) { running = false; v.pause(); } else startClip(i); });
+      btn.addEventListener("click", function () { userPaused = false; startClip(i); });
+      v.addEventListener("click", function () {
+        if (!v.paused) { userPaused = true; running = false; v.pause(); }
+        else { userPaused = false; startClip(i); }
+      });
       v.addEventListener("play", function () { slide.classList.add("is-playing"); });
       v.addEventListener("pause", function () { slide.classList.remove("is-playing"); });
       v.addEventListener("ended", function () { if (running && i === current) go(i + 1, true); });
@@ -263,12 +268,17 @@
         if (was) startClip(i);
       }, 140);
     }, { passive: true });
+    mark(0);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) slides.forEach(function (s, k) { videoAt(k).pause(); });
-      }, { threshold: 0.15 }).observe(track);
+        inView = entries[0].isIntersecting;
+        if (!inView) slides.forEach(function (s, k) { videoAt(k).pause(); });
+        else if (autoplay && !userPaused) startClip(current);
+      }, { threshold: 0.35 }).observe(track);
     }
-    mark(0);
+    // Start straight away when the reel is already on screen at load, without waiting for the observer.
+    var box = track.getBoundingClientRect();
+    if (autoplay && box.top < window.innerHeight && box.bottom > 0) { inView = true; startClip(0); }
   }
 
   /* ---- Timing demo (Memora page) ---- */
