@@ -554,6 +554,7 @@ tbody tr:last-child td { border-bottom: 0; }
 
 /* ---------- Project colours ---------- */
 .acc-memora { --accent: #be2f7a; --accent-wash: #fce7f2; --mark: #e489bd; }
+.acc-housing-pipeline { --accent: #2b5a78; --accent-wash: #e3edf5; --mark: #7fa6c4; }
 .acc-desktop-idle { --accent: #0b6f67; --accent-wash: #e1f5f2; --mark: #5fbcb3; }
 .acc-touch-fx { --accent: #2c66c8; --accent-wash: #e4edfb; --mark: #86aee8; }
 .acc-riot-analysis { --accent: #a3480a; --accent-wash: #fcebdd; --mark: #e9a06a; }
