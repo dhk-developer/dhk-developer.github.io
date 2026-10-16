@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>England housing affordability pipeline · Dae Kang</title>
+<meta name="description" content="A Python and PostgreSQL pipeline that loads 7.1 million Land Registry sales and ONS earnings data, accounts for every row, matches the official figures and feeds a Power BI report.">
+<meta name="author" content="Daehurn Kang">
+<link rel="canonical" href="https://dhk-developer.github.io/housing-pipeline.html">
+
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dae Kang">
+<meta property="og:title" content="England housing affordability pipeline · Dae Kang">
+<meta property="og:description" content="A Python and PostgreSQL pipeline that loads 7.1 million Land Registry sales and ONS earnings data, accounts for every row, matches the official figures and feeds a Power BI report.">
+<meta property="og:image" content="https://dhk-developer.github.io/assets/og/housing-pipeline.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>(function(d){d.documentElement.classList.remove("no-js");d.documentElement.classList.add("js")})(document)</script>
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Daehurn Kang","alternateName":"Dae Kang","worksFor":{"@type":"Organization","name":"Infotechtion"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Imperial College London"}],"knowsLanguage":["en","ko"],"email":"mailto:daehurn.kang@gmail.com","url":"https://dhk-developer.github.io","sameAs":["https://github.com/dhk-developer","https://www.linkedin.com/in/daehurn-kang-003650209"],"knowsAbout":["C#","Unity",".NET","Python","SQL","Power BI","Tableau","Data analysis","Business analysis","Game development"]},{"@context":"https://schema.org","@type":"CreativeWork","name":"England housing affordability pipeline","headline":"Loading every house sale in England into PostgreSQL to find out where homes became harder to afford between 2019 and 2024","description":"A Python and PostgreSQL pipeline that loads 7.1 million Land Registry sales and ONS earnings data, accounts for every row, matches the official figures and feeds a Power BI report.","author":{"@type":"Person","name":"Daehurn Kang"},"keywords":"Python, PostgreSQL, SQL, psycopg, pandas, pytest, GitHub Actions, Power BI, HM Land Registry, ONS"}]</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">Dae Kang</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li><li><a href="work.html" aria-current="page">Work</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<article class="acc-housing-pipeline">
+  <header class="case-head">
+    <div class="wrap">
+      <p class="crumb"><a class="back" href="work.html">All work</a></p>
+      <h1>England housing affordability pipeline</h1>
+      <p class="line">Loading every house sale in England into PostgreSQL to find out where homes became harder to afford between 2019 and 2024</p>
+      <dl class="facts">
+        <div><dt>What it is</dt><dd>An end-to-end data pipeline and Power BI report on how affordable housing is in each council in England</dd></div><div><dt>Data</dt><dd>7.1 million HM Land Registry sales (2018 to 2024) and the ONS house price to earnings tables</dd></div><div><dt>Built with</dt><dd>Python, PostgreSQL, SQL, pytest, GitHub Actions, Power BI</dd></div><div><dt>Code</dt><dd>Public on GitHub, with unit tests that run on every push</dd></div>
+        <div><dt>When</dt><dd>2026</dd></div>
+      </dl>
+      <p class="case-links"><a class="ext" href="https://github.com/dhk-developer/housing-affordability-pipeline" rel="noopener">Code, SQL and Power BI project</a></p>
+      <div class="case-lead">
+        <section class="glance" aria-labelledby="glance-title">
+          <h2 id="glance-title">At a glance</h2>
+          <dl><div><dt>Volume</dt><dd>7,100,023 sales loaded, 5,633,489 kept, and 1,466,534 rejected with a reason for each.</dd></div><div><dt>Nothing lost</dt><dd>The pipeline stops if the rows loaded don&#39;t equal the rows kept plus the rows rejected, for every file.</dd></div><div><dt>Accuracy</dt><dd>1,770 of 1,776 council-years come within 2% of the official ONS median price.</dd></div><div><dt>Model</dt><dd>Raw, staging, core and mart layers in PostgreSQL, with a star schema at the core.</dd></div><div><dt>The answer</dt><dd>111 of 294 councils became less affordable between 2019 and 2024, and in every one of them prices simply rose faster than pay.</dd></div></dl>
+        </section>
+        <figure class="media">
+  <div class="media-frame is-image"><img src="assets/media/housing-story.webp" width="1600" height="899" alt="The first page of the Power BI report, headed &#39;Housing got less affordable in 2021, then pay caught up&#39;. A line chart of the typical council&#39;s house price to earnings ratio runs from 8.46 in 2019 to a peak of 9.33 in 2021, then falls to 8.29 in 2024." loading="eager" decoding="async"></div>
+  <figcaption>The first page of the Power BI report. The ratio of house price to earnings for the typical council peaked during the stamp duty holiday in 2021 and had eased slightly below its 2019 level by 2024.</figcaption>
+</figure>
+      </div>
+    </div>
+  </header>
+  <div class="wrap case-body has-toc">
+    <nav class="toc" aria-label="On this page">
+  <details open data-toc>
+    <summary>On this page</summary>
+    <ol><li><a href="#the-question">The question</a></li><li><a href="#how-the-data-moves">How the data moves</a></li><li><a href="#loading-without-losing-anything">Loading without losing anything</a></li><li><a href="#matching-places-that-changed-their-names">Matching places that changed their names</a></li><li><a href="#cleaning-decisions">Cleaning decisions</a></li><li><a href="#the-model">The model</a></li><li><a href="#checking-it-against-the-official-figures">Checking it against the official figures</a></li><li><a href="#what-it-found">What it found</a></li><li><a href="#the-report">The report</a></li><li><a href="#limitations">Limitations</a></li><li><a href="#what-id-do-next">What I&#39;d do next</a></li></ol>
+  </details>
+</nav>
+    <div class="prose">
+      <h2 id="the-question">The question</h2>
+<p>I built this project to work through a data pipeline properly from end to end, from downloading public files to a finished report, on a question I actually wanted answered: how affordable is housing across England&#39;s councils, and how has that changed since 2019?</p>
+<p>Affordability here means the ratio of the median house price to median full-time earnings in a council. A ratio of 8 means a typical home costs eight years of a typical salary. The Office for National Statistics publishes this ratio every year, so I could build my own figures from individual sales and then check them against the official ones.</p>
+<h2 id="how-the-data-moves">How the data moves</h2>
+<p>There are two sources. HM Land Registry publishes every residential sale in England and Wales as one CSV file per year, about a million rows each, and the ONS publishes earnings and its own ratios in an Excel workbook designed for people to read rather than for computers. The pipeline is a small Python package with a command line: <code>python -m pipeline run --years 2018-2024</code> downloads the files it doesn&#39;t already have and builds every layer, and <code>python -m pipeline check</code> re-runs the checks without rebuilding anything.</p>
+<p>Each layer lives in its own PostgreSQL schema and has one job:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-labelledby="layers-caption">
+<table>
+<caption id="layers-caption">The layers of the pipeline</caption>
+<thead><tr><th scope="col">Layer</th><th scope="col">What it holds</th></tr></thead>
+<tbody>
+<tr><th scope="row">Raw</th><td>The files loaded unchanged, every column as text, tagged with the file they came from</td></tr>
+<tr><th scope="row">Staging</th><td>Typed and cleaned sales, and a separate table of every rejected row with the reason it was rejected</td></tr>
+<tr><th scope="row">Core</th><td>A star schema: a fact table of sales and one of earnings, with dimensions for date, council and property type</td></tr>
+<tr><th scope="row">Mart</th><td>Summary tables by council and year and by council and month, which are what the report reads</td></tr>
+<tr><th scope="row">ETL log</th><td>A run log with the rows in, out and rejected for every step of every run</td></tr>
+</tbody>
+</table>
+</div>
+<p>The SQL that builds each layer sits in numbered files that run in order, so anyone reading the repository can follow the data from raw to mart one file at a time.</p>
+<h2 id="loading-without-losing-anything">Loading without losing anything</h2>
+<p>Raw is never edited. Loading every column as text means a strange value can&#39;t stop the load, and if I get a later step wrong I can rebuild it from raw without downloading anything again. Each yearly file is streamed into PostgreSQL with <code>COPY</code> rather than inserted row by row from pandas, and I wrote a small script that times the two approaches against each other on the same 100,000 rows.</p>
+<p>The question I cared about most wasn&#39;t whether the data loaded but whether all of it loaded. Before each load the pipeline counts the rows in the file, parsing it the same way <code>COPY</code> does so that commas inside quoted addresses don&#39;t throw the count off, and after the load it counts the rows that arrived. If the two differ, it rolls the load back, logs the failure and stops. Every step writes its counts to the run log, so any number in the report can be traced back to the file it came from.</p>
+<h2 id="matching-places-that-changed-their-names">Matching places that changed their names</h2>
+<p>Joining the two sources turned out to be the hardest part. Land Registry records each sale against a local authority district, and many of those districts no longer exist under the same name: councils have merged and been renamed several times since 2018. Harrogate and Scarborough, for example, became part of North Yorkshire in 2023, and Aylesbury Vale became part of Buckinghamshire in 2020.</p>
+<p>315 districts match an ONS council automatically by name. The other 46 are mapped by hand in a seed file, and every row of that file carries a note explaining the mapping. An ordinary join would have dropped the sales in those 46 districts without any warning, so the pipeline stops if any district is left unmatched, which turns a silent error into a loud one. Unit tests check the name matching and the seed file, and they run on GitHub Actions for every push and pull request.</p>
+<h2 id="cleaning-decisions">Cleaning decisions</h2>
+<p>Most of the cleaning came down to a handful of decisions, each written down with its reason:</p>
+<ul>
+<li><strong>Reject, don&#39;t delete.</strong> 1,158,957 sales were category B, which covers repossessions, buy-to-let purchases and other non-standard sales, and 307,577 were in Wales. Both are rejected with a reason, the way ONS treats them, so raw always equals kept plus rejected, and the pipeline checks that it does.</li>
+<li><strong>Flag, don&#39;t remove.</strong> 861 sales were under £10,000 or over £10 million. Some are probably real, so they are kept with a flag and each analysis can decide whether to include them.</li>
+<li><strong>Use the ONS year.</strong> ONS years run from October to September. Every sale is given an ONS year, which is the only way my figures could ever line up with theirs, and it is why the 2018 file is needed for a comparison that starts in 2019.</li>
+</ul>
+<p>No rows at all had a missing or unreadable price or date, which was cleaner than I&#39;d expected from a file of seven million rows.</p>
+<h2 id="the-model">The model</h2>
+<p>The core is a star schema. <code>fact_sale</code> has one row per kept sale, 5,633,489 in total, and the dimensions describe when it happened (<code>dim_date</code>, with both the calendar and the ONS year), where (<code>dim_council</code>) and what was sold (<code>dim_property</code>: type, new build or not, freehold or leasehold). Earnings sit in a second fact table at council and year level. A check confirms that the fact table holds exactly as many rows as staging, so the joins to the dimensions neither lost nor duplicated anything, and another confirms that no fact row points at a dimension row that doesn&#39;t exist.</p>
+<p>The marts are small tables built for the report. <code>council_year</code> holds, for each council and ONS year, the number of sales, the median price, the share of new builds, median earnings and the ratio, with the official ONS figures in the next columns and the difference between the two.</p>
+<h2 id="checking-it-against-the-official-figures">Checking it against the official figures</h2>
+<p>Before drawing any conclusions I profiled the data in a notebook, writing down what I expected before each chart so that I couldn&#39;t explain away whatever I saw. The data reflected real events: a normal month in 2019 had about 66,000 sales, April 2020 had about 24,000 during the first lockdown, and the busiest months were March and June 2021, the two deadlines of the stamp duty holiday.</p>
+<p>The strongest evidence that the pipeline is right is that it reproduces the official numbers. For 1,770 of 1,776 council-years, the median price I calculate from individual sales is within 2% of the ONS figure. The six that miss do so by 2.4% to 3.6%, all in expensive or new-build-heavy areas, most likely because my download includes sales that were registered after ONS published.</p>
+<h2 id="what-it-found">What it found</h2>
+<p>For the typical council the ratio rose from 8.46 in 2019 to 9.33 in 2021, then eased to 8.29 by 2024, slightly below where it started. Across England, the median house price and median earnings both grew by about 22% over the five years.</p>
+<p>Underneath that, 111 of 294 councils became less affordable, and in every one of them both prices and pay went up; prices simply rose faster. Commuter towns and the coast lost the most ground, led by Lewes, Chichester, Manchester and Maldon. London moved the other way: 29 of its 32 boroughs became more affordable and its typical ratio fell from 12.9 to 12.0, although it is still far less affordable than anywhere else. A Mann-Whitney U test confirmed that London&#39;s change was different from the rest of England&#39;s, while the share of new building showed no meaningful link with the change in affordability (Spearman ρ = 0.10, p = 0.09).</p>
+<h2 id="the-report">The report</h2>
+<p>The Power BI report has four pages: the national story, where affordability changed, why it changed in each council, and the health of the pipeline itself. Its headlines state the finding rather than describe the chart, and it is saved as a Power BI project, which stores the report and the data model as text files, so changes to the report show up in Git like any other code.</p>
+<figure class="media">
+  <div class="media-frame is-image"><img src="assets/media/housing-where.webp" width="1600" height="899" alt="The &#39;Where it changed&#39; page: two bar charts of the twelve councils with the biggest rises in the ratio, led by Lewes, Chichester and Manchester, and the twelve with the biggest falls, led by Kensington and Chelsea, Lambeth and Hackney, above a line chart of London against the rest of England." loading="lazy" decoding="async"></div>
+  <figcaption>Where affordability changed most between 2019 and 2024. The biggest falls in the ratio are almost all in London.</figcaption>
+</figure>
+<figure class="media">
+  <div class="media-frame is-image"><img src="assets/media/housing-why.webp" width="1600" height="899" alt="The &#39;Why, by council&#39; page: a scatter plot of house price growth against earnings growth for every council, with the councils above the diagonal highlighted, an index line of prices against pay since 2019, and a table of councils sorted by the change in their ratio." loading="lazy" decoding="async"></div>
+  <figcaption>Each dot is a council. Above the diagonal, prices grew faster than pay. The line on the right compares prices with pay for England or for any council picked from the list.</figcaption>
+</figure>
+<figure class="media">
+  <div class="media-frame is-image"><img src="assets/media/housing-pipeline-health.webp" width="1600" height="899" alt="The &#39;Pipeline health&#39; page: headline figures of 7,100,023 sales loaded, 5,633,489 kept, 1,466,534 rejected, 99.7% of council-years within 2% of ONS and 4 of 4 checks passed, with a bar chart of kept and rejected sales for each yearly file and a table of the four automated checks." loading="lazy" decoding="async"></div>
+  <figcaption>The last page reads the pipeline&#39;s own run log from the database, so the report shows whether its data can be trusted.</figcaption>
+</figure>
+<h2 id="limitations">Limitations</h2>
+<p>The project looks at sale prices only, not rents or mortgage costs, so it doesn&#39;t capture the rise in interest rates since 2022, and it uses earnings for full-time workers only. Medians also move with the mix of homes sold: in 2020, detached houses rose to 28% of sales and flats fell to 17%, so part of that year&#39;s price rise reflects which homes sold rather than homes becoming more expensive. The two smallest councils, the City of London and the Isles of Scilly, have too few sales for a reliable median and are left out of the rankings.</p>
+<h2 id="what-id-do-next">What I&#39;d do next</h2>
+<p>Land Registry also publishes a monthly file of changes, so the next step would be incremental loads that add only the new month instead of rebuilding whole years, run on a schedule with an alert when a check fails. The layers would map directly onto a lakehouse design, with raw as bronze, staging as silver and the marts as gold. On the analysis side, adding ONS private rents and Bank of England mortgage rates would cover what sale prices miss.</p>
+
+      <p style="margin-top:var(--s7)">If you'd like to keep reading, the next project is <a href="desktop-idle.html">DesktopIdle</a>: a small tray app that tidies your Windows desktop away when you leave the computer, and puts everything back when you return.</p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>Email is the easiest way to reach me if you'd like to talk about any of the projects on this site, and I'm always happy to go through one of them in more detail.</p>
+    <div class="email-row">
+      <a class="email" href="mailto:daehurn.kang@gmail.com">daehurn.kang@gmail.com</a>
+      <button class="copy" type="button" data-copy="daehurn.kang@gmail.com">Copy</button>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+    </div>
+    <ul class="footer-links">
+      <li><a class="ext" href="https://github.com/dhk-developer" rel="me noopener">GitHub</a></li>
+      <li><a class="ext" href="https://www.linkedin.com/in/daehurn-kang-003650209" rel="me noopener">LinkedIn</a></li>
+      <li><a href="cv.html">CV</a></li>
+    </ul>
+    <div class="footer-base">
+      <p>© 2026 Daehurn Kang</p>
+      <p>No cookies or tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
