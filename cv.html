@@ -66,9 +66,9 @@
 
     <h2>Key skills</h2>
     <dl class="cv-skills">
-      <div><dt>Data analysis</dt><dd>SQL (MySQL, PostgreSQL), Python (Pandas, NumPy, Matplotlib), SQLAlchemy, data cleaning, validation and reconciliation, data modelling, correlation analysis</dd></div>
+      <div><dt>Data analysis</dt><dd>SQL (PostgreSQL, MySQL), Python (Pandas, NumPy, Matplotlib), SQLAlchemy, data cleaning, validation and reconciliation, data modelling (star schemas), statistical testing, correlation analysis</dd></div>
       <div><dt>Visualisation and reporting</dt><dd>Power BI (DAX), Tableau, Excel, KPI dashboards, automated reporting, stakeholder reports</dd></div>
-      <div><dt>Data engineering</dt><dd>ETL pipelines, REST API data extraction, JSON, rate-limit handling and caching, Git and GitHub</dd></div>
+      <div><dt>Data engineering</dt><dd>ETL pipelines, layered warehouse design (raw, staging, core, mart), REST API data extraction, JSON, pytest, GitHub Actions, Git and GitHub</dd></div>
       <div><dt>Business analysis</dt><dd>Requirements gathering, user stories, acceptance criteria, process and data-flow mapping, stakeholder management, Azure DevOps, Agile (Scrum)</dd></div>
       <div><dt>Platforms and programming</dt><dd>Microsoft 365, Microsoft Purview, Salesforce, Python, SQL, C#, .NET</dd></div>
     </dl>
@@ -89,6 +89,15 @@
     </div>
 
     <h2>Projects</h2>
+    <div class="cv-entry">
+      <header><h3>England housing affordability pipeline (Python, PostgreSQL, Power BI, pytest)</h3><span class="when">2026</span></header>
+      <ul>
+        <li>Built an end-to-end pipeline loading 7.1 million HM Land Registry sales (2018–2024) and ONS earnings data into PostgreSQL through raw, staging, star-schema and mart layers, feeding a four-page Power BI report.</li>
+        <li>Reconciled every row (raw always equals kept plus rejected, with 1.47 million rejections each given a reason); council medians match the official ONS figures within 2% for 99.7% of council-years.</li>
+        <li>Mapped 46 renamed or merged districts to current councils in a documented seed file, and aligned every sale to ONS October–September years; unit tests run on GitHub Actions.</li>
+        <li>Found that 111 of 294 councils became less affordable between 2019 and 2024, while London improved most (median ratio 12.9 to 12.0; Mann-Whitney U, p &lt; 0.000001). <a class="ext" href="https://github.com/dhk-developer/housing-affordability-pipeline" rel="noopener">Code on GitHub</a></li>
+      </ul>
+    </div>
     <div class="cv-entry">
       <header><h3>League of Legends match analysis (Python, Pandas, SQLAlchemy, MySQL, Riot Games API)</h3><span class="when">2024</span></header>
       <ul>
